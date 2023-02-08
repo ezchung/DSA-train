@@ -3,7 +3,10 @@
  * @return {boolean}
  */
 var containsDuplicate = function(nums) {
-    
+    let checkSet = new Set(nums);
+
+    if(checkSet.size !== nums.length) return true;
+    else return false
 };
 
 /**
@@ -16,5 +19,5 @@ var containsDuplicate = function(nums) {
 
  PsuedoCode
  - Use a set
- - if length of set is not equal to length of original nums, true, if equal (means all distinct), return false
+ - if size of set is not equal to length of original nums, true, if equal (means all distinct), return false
  */
