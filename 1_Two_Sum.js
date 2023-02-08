@@ -31,4 +31,7 @@ var twoSum = function(nums, target) {
     Take a look at the first number
         Take a look at the second number
             if the two add up to target number, return index
+
+ Another approach can be 
+    Take the number with each number subtract from the target and see if that number exists elsewhere
 */
