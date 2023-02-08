@@ -1,3 +1,23 @@
+/**
+ * @param {string[]} strs
+ * @return {string[][]}
+ */
+var groupAnagrams = function(strs) {
+    let anagramObj = {};
+
+    for(let str of strs){
+        let sortedStr = str.split("").sort().join("") 
+        if(sortedStr in anagramObj){
+            anagramObj[sortedStr].push(str);
+        }else{
+            anagramObj[sortedStr] = [str];
+        }
+    }
+    
+    let listOfAnagrams = Object.values(anagramObj);
+    return listOfAnagrams;
+};
+
 /*
   Problem
   - Group anagrams together. 
