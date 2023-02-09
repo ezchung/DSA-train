@@ -24,4 +24,10 @@ var productExceptSelf = function(nums) {
  * With O(n) restriction
  * assign 1 to each in returning list
  * iterate through and multiply to array whenever the index is not currently on them
+ * 
+ * Create two for loops
+ * Start from left and multiply up
+ * Another start from right and multiply going down
+ *  Both to the same array
+ * This will build up and multiply on the way down.
  */
