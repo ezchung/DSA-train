@@ -3,7 +3,19 @@
  * @return {number[]}
  */
 var productExceptSelf = function(nums) {
-    
+    let products = [];
+
+    let prefix = 1;
+    let postfix = 1;
+    for(let i = 0; i < nums.length; i++){
+        products[i] = prefix;
+        prefix *= nums[i];
+    }
+    for(let j = nums.length-1; j >= 0; j--){
+        products[j] *= postfix;
+        postfix *= nums[j]
+    }
+    return products;
 };
 
 /**
@@ -30,4 +42,34 @@ var productExceptSelf = function(nums) {
  * Another start from right and multiply going down
  *  Both to the same array
  * This will build up and multiply on the way down.
+ * 
+ * Start PsuedoCode
+ * create left value keep it natural as 1
+ * create right value
+ * create prefix array
+ * create postfix array
+ * for prefix array
+ * iterate through array
+ *  multiply by prefix and multiply by index-1
+ * 
+ * 
+ * Non-O(n) memory solution
+ * create prefix variable = 1
+ * create postfix variable = 1
+ * create returning array
+ *  map everything in returning array to 1
+ * iterate through array
+ *  returnArray[currIdx] = prefix
+ *  prefix = prefix * nums[currIdx]
+ * iterate through array from back
+ *  returnArray[currIdx] = postfix * returnArr[currIdx]
+ *  postfix = postfix * nums[currIdx]
+ * 
+ * Notes
+ * Multiplying every single number except for itself
+ *  Every other value
+ * Get every value before itself in first loop
+ * Get every value after itself for second loop
+ * 
+ * 
  */
