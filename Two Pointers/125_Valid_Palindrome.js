@@ -3,7 +3,20 @@
  * @return {boolean}
  */
 var isPalindrome = function(s) {
-    
+    let alphabet = "abcdefghijklmnopqrstuvwxyz";
+    let sAsArr = s.split("")
+    let singleWord = sAsArr.filter((char)=> alphabet.indexOf(char.toLowerCase()) !== -1 || !isNaN(parseInt(char)));
+    let left = 0;
+    let right = singleWord.length-1;
+    if(singleWord.length === 0) return true;
+    while(left < right){
+        if(singleWord[left].toLowerCase() !== singleWord[right].toLowerCase()) {
+            return false;
+        }
+        left++;
+        right--;
+    }
+    return true;
 };
 
 /**
