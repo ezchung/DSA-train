@@ -4,8 +4,23 @@
  * @return {boolean}
  */
 var backspaceCompare = function(s, t) {
-    
+    let newS = getCompletedString(s);
+    let newT = getCompletedString(t);
+    let result = newS === newT ? true : false
+    return result;
 };
+
+function getCompletedString(str){
+    let newStrChars = [];
+    for(let char of str){
+        if(char === "#"){
+            newStrChars.pop();
+        }else{
+            newStrChars.push(char);
+        }
+    }
+    return newStrChars.join("");
+}
 
 /**
 Question: 
