@@ -2,10 +2,54 @@
  * @param {number[]} nums
  * @return {number[][]}
  */
-var threeSum = function(nums) {
-    
+var threeSum = function(nums, memo=[]) {
+    if(nums.length <= 3) return memo;
+    for(let i = 0; i <= nums.length-1; i++){
+        let first = nums[i];
+        let second = nums[i+1];
+        let firstTwoSum = first + second;
+        let remainingSum = 0 + -(firstTwoSum)
+        let idxs = []
+        nums.forEach((num,idx) => {
+            if(num === remainingSum) idxs.push(idx);
+        });
+        if(nums.includes(remainingSum) && isDifferentIdx(i,i+1, idxs)){
+            let tempArr = [];
+            tempArr.push(first,second,remainingSum)
+            tempArr.sort();
+            if(!hasArray(memo,tempArr)){
+                memo.push(tempArr);
+            }
+        }
+        console.log(memo)
+    }
+    return memo;
 };
 
+function isDifferentIdx(firstIdx,secondIdx, idxs){
+    /**
+    Check that idx can be a different element for the three, but also included. 
+    - If first or second exists and are taken out, an idx still exists.
+    Code
+    Look at idxs, if not first or second, return true
+    return false
+    */
+    for(let idx in idxs){
+        if(idx !== firstIdx && idx !== secondIdx) return true;
+    }
+    return false;
+}
+
+/**
+Check to see if memo array has target array already counted for.
+ */
+function hasArray(memo, target){
+    return memo.some(subArray => {
+        return subArray.every((el, idx) => {
+            return el === target[idx];
+        });
+    });
+}
 /**
 
  PsuedoCode
