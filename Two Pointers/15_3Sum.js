@@ -2,54 +2,33 @@
  * @param {number[]} nums
  * @return {number[][]}
  */
-var threeSum = function(nums, memo=[]) {
-    if(nums.length <= 3) return memo;
-    for(let i = 0; i <= nums.length-1; i++){
-        let first = nums[i];
-        let second = nums[i+1];
-        let firstTwoSum = first + second;
-        let remainingSum = 0 + -(firstTwoSum)
-        let idxs = []
-        nums.forEach((num,idx) => {
-            if(num === remainingSum) idxs.push(idx);
-        });
-        if(nums.includes(remainingSum) && isDifferentIdx(i,i+1, idxs)){
-            let tempArr = [];
-            tempArr.push(first,second,remainingSum)
-            tempArr.sort();
-            if(!hasArray(memo,tempArr)){
-                memo.push(tempArr);
+var threeSum = function(nums) {
+    nums.sort((a,b)=> a-b);
+    let returnArr = [];
+    if(nums.length < 3) return returnArr;
+    for(let i =0; i < nums.length; i++){
+        let left = i + 1;
+        let right = nums.length-1;
+        if(i > 0 && nums[i] === nums[i-1]) continue;
+        while(left < right){
+            let sum = nums[i] + nums[left] + nums[right];
+            if(sum === 0){
+                let tempArr = [nums[i], nums[left], nums[right]];
+                returnArr.push(tempArr);
+                left++;
+                while(nums[left] === nums[left-1] && left < right){
+                    left++
+                }
+            }else if(sum > 0){ //meaning the right is too high
+                right--;
+            }else{
+                left++; //Because there would be no result
             }
         }
-        console.log(memo)
     }
-    return memo;
+    return returnArr;
 };
 
-function isDifferentIdx(firstIdx,secondIdx, idxs){
-    /**
-    Check that idx can be a different element for the three, but also included. 
-    - If first or second exists and are taken out, an idx still exists.
-    Code
-    Look at idxs, if not first or second, return true
-    return false
-    */
-    for(let idx in idxs){
-        if(idx !== firstIdx && idx !== secondIdx) return true;
-    }
-    return false;
-}
-
-/**
-Check to see if memo array has target array already counted for.
- */
-function hasArray(memo, target){
-    return memo.some(subArray => {
-        return subArray.every((el, idx) => {
-            return el === target[idx];
-        });
-    });
-}
 /**
 
  PsuedoCode
