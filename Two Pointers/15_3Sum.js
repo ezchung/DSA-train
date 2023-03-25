@@ -37,7 +37,7 @@ var threeSum = function(nums) {
 New Code
 *Note: Sorting so that we know what the order is where to look
 - sort the array nums
-- create a variable array
+- create a variable array = []
 - if nums array is < 3, return variable array
 - Iterate through the nums array
     - left is i+1
