@@ -3,6 +3,51 @@
  * @return {boolean}
  */
 var isValidSudoku = function(board) {
+    for(let i = 0; i < board.length; i++){
+        let checkRowArr = [];
+        let checkColArr = [];
+        for(let j = 0; j < board.length; j++){
+            if(checkRowArr.indexOf(board[i][j]) !== -1){
+                return false;
+            }else{
+                let value = board[i][j];
+                if(+value) checkRowArr.push(value)
+            }
+
+            if(checkColArr.indexOf(board[j][i]) !== -1){
+                return false;
+            }else{
+                let value = board[j][i];
+                if(+value) checkColArr.push(value)
+            }
+        }
+    }
+
+    let row = 0;
+    let column = 0;
+    
+    while(row <= 8){
+        let boxPerRow = 1; //purpose that column can increase
+        let tempColm = 0;
+        while(boxPerRow <= 3){
+            let checkArr = [];
+            for(let i = row; i < row+3; i++){
+                for(let j = tempColm; j < tempColm+3; j++){
+                    if(checkArr.indexOf(board[i][j]) !== -1){
+                        return false;
+                    }else{
+                        let value = board[i][j];
+                        if(+value) checkArr.push(value);
+                    }
+                }
+            }
+            tempColm += 3;
+            boxPerRow++;
+        }
+        column += 3;
+        row += 3;
+    }
+    return true;
     
 };
 
