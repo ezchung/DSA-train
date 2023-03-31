@@ -3,7 +3,19 @@
  * @return {boolean}
  */
 var isValid = function(s) {
-    
+    let stack = [];
+    let endBrackets = ")}]";
+    let startBrackets = "({[";
+    for(let char of s){
+        if(endBrackets.indexOf(char) !== -1){
+            if(stack.length === 0) return false;
+            let oppoBracket = stack.pop();
+            if(startBrackets.indexOf(oppoBracket) !== endBrackets.indexOf(char)) return false;
+        }else{
+            stack.push(char);
+        }
+    }
+    return stack.length === 0;    
 };
 
 /**
