@@ -20,6 +20,23 @@ What are the things that we will need to know
 - look at the start number
 - look at the end number
 
+Possible sliding window solution (non-fixed window)
+iterate through nums array
+    start an array at 0 to the next number,
+        get difference of first to last of array
+        if negative number, increase first by 1, add new num to sumArr
+        and subtract the previous number
+        else see if greater than currentMaxProfit
+            if yes, continue
+            else, go
+
+maxProfit = 0;
+start, end = 0;
+while end < array length
+    end += 1
+    if first - last is negative, then increase start by 1
+    if postive, check max and continue
+
 declare currentMaxOutput = 0;
 two pointers method
 iterate through array from i to length-2
