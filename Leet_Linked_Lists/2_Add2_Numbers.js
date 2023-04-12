@@ -29,7 +29,7 @@ let createArr = function(linkedList){
 }
 
 let createLL = function(num){
-    let text = Array.from(String(num));
+    let text = Array.from(String(num)).reverse();
     const head = new ListNode(text[0]);
     let curr = head;
     console.log(text, "Text")
