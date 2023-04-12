@@ -16,4 +16,11 @@ var addTwoNumbers = function(l1, l2) {
 
 /* 
 iterate through the linked lists and create a string of the numbers
+create variable equal to l1.val
+create string1, str2
+while variable is not null
+    unshift to array
+    variable = variable.next;
+
+make string to number and add the two strings
 */
