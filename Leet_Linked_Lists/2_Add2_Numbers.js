@@ -14,7 +14,8 @@ var addTwoNumbers = function(l1, l2) {
     let num1 = +createArr(l1);
     let num2 = +createArr(l2);
     let result = num1 + num2;
-
+    let final = createLL(result);
+    return final
 };
 
 let createArr = function(linkedList){
@@ -28,8 +29,16 @@ let createArr = function(linkedList){
 }
 
 let createLL = function(num){
-    let newNode = new Node();
-    
+    let text = Array.from(String(num));
+    const head = new ListNode(text[0]);
+    let curr = head;
+    console.log(text, "Text")
+    for(let n = 1; n < text.length; n++){
+        const newNode = new ListNode(text[n]);
+        curr.next = newNode;
+        curr = newNode;
+    }
+    return head;
 }
 
 /* 
