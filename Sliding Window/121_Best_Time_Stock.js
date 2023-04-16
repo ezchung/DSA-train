@@ -3,15 +3,29 @@
  * @return {number}
  */
 var maxProfit = function(prices) {
-    let maxOutput = 0;
-    if(prices.length < 2) return maxOutput;
-    for(let i = 0; i < prices.length-1; i++){
-        for(let j = i+1; j < prices.length; j++){
-            let diff = prices[j]-prices[i];
-            if(diff > 0) maxOutput = Math.max(diff, maxOutput);
+    // let maxOutput = 0;
+    // if(prices.length < 2) return maxOutput;
+    // for(let i = 0; i < prices.length-1; i++){
+    //     for(let j = i+1; j < prices.length; j++){
+    //         let diff = prices[j]-prices[i];
+    //         if(diff > 0) maxOutput = Math.max(diff, maxOutput);
+    //     }
+    // }
+    // return maxOutput;
+
+    let max = 0;
+    let start = 0;
+    let end = 0;
+    while(end < prices.length){
+        end += 1;
+        if(prices[end] - prices[start] < 0){
+            start += 1;
+        }else{
+            let checkPrice = prices[end] - prices[start];
+            max = Math.max(max, checkPrice);
         }
     }
-    return maxOutput;
+    return max;
 };
 
 /**
