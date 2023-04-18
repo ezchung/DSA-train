@@ -2,8 +2,30 @@
  * @param {number[]} height
  * @return {number}
  */
+
 var maxArea = function(height) {
-    
+    // if(height.length === 2){
+    //     let min = Math.min(height[0], height[1]);
+    //     return 1 * min;
+    // }
+    let max = -Infinity;
+    let left = 0;
+    let right = height.length - 1;
+    while(left <= right){
+        let dist = right - left;
+        let min = Math.min(height[left], height[right]);
+        let area;
+        if(height[left] <= height[right]){
+            area = height[left] * dist;
+            max = Math.max(max,area);
+            left++;
+        }else{
+            area = height[right] * dist;
+            max = Math.max(max,area);
+            right--;
+        }
+    }
+    return max === -Infinity ? 0 : max;
 };
 
 /**
