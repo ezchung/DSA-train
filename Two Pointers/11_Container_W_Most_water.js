@@ -43,5 +43,4 @@ while left is not equal to right
     find which number is lower between the two values and multiply
     based on which(left or right val) is lower
         increase or subtract.
-    
 */
