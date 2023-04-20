@@ -31,15 +31,6 @@ MinStack.prototype.getMin = function() {
     
 };
 
-/** 
- * Your MinStack object will be instantiated and called as such:
- * var obj = new MinStack()
- * obj.push(val)
- * obj.pop()
- * var param_3 = obj.top()
- * var param_4 = obj.getMin()
- */
-
 /**
  hint: think of each node having a corresponding min value
  push
@@ -55,6 +46,16 @@ Solution
     When pushed, create an object with the value and the min (look at current length of stack, give option of the incoming value or the min between the two)
     In min, we will look at the last entry and return that min
 
+Another solution (similar idea)
+    with push
+        create the object and add the object to stack
+        reassign the currentMin if applicable
+    with pop
+        destructure val and prevMin out of stack obj
+        the current min will be equal to prevMin
+            //works because prevMin will be the min that was at the top before value was pushed in so with getMin() we can just say this.min
+
+
     - Whenever you add a val, add to min as well. 
         check if less than min, 
             yes, add this to front of min, move current min to index 1
@@ -63,3 +64,8 @@ Solution
     - Conclusion: this upper code will not scale well
 
 */
+
+/**
+ * monotonic stack : always non-decreasing or non-increasing
+ * 
+ */
