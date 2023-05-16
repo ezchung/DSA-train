@@ -38,6 +38,17 @@ Idea: look at the height (height is like rocks). The space above is the borders 
 Look at everything in between
 
 PseudoCode
+two pointers
+    if height is null or length is 0, return 0
+    left = 0, right = height.length - 1 //this is index
+    result = 0
+    while left is greater than right
+        lMax = max of lMax and current height at l
+        if height[l] < lMax, res += lMax - height[l]
+        same with rMax
+        if height[l] < height[r], left++ else r--;
+    return res
+
 brute force method
     if height is null or length is 0, return 0
     let result = 0
