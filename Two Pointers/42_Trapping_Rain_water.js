@@ -6,14 +6,22 @@ var trap = function(height) {
     if(height.length === 0 || height === null){
         return 0;
     }
-    let left = 0;
-    let right = 2;
-    let mid = 1;
-    let count = 0;
-    let previousCount = 0;
-    while(right < height.length){ //didnt work because if left side is larger, wouldnt add 
-
+    let result = 0;
+    for(let i = 0; i < height.length; i++){
+        let leftMax = 0;
+        let rightMax = 0;
+        for(let j = 0; j < i; j++){ //This for loop will check from beginning to point of i
+            leftMax = Math.max(leftMax, height[j]);
+        }
+        for(let j = i+1; j< height.length; j++){
+            rightMax = Math.max(rightMax, height[j]);
+        }
+        //The two inner for loops made to check from one side and the other.
+        const water = Math.min(leftMax,rightMax) - height[i];
+        console.log(water, "water")
+        if(water>0) result += water; //Take out negative numbers
     }
+    return result;
 };
 
 /**
