@@ -3,7 +3,17 @@
  * @return {number}
  */
 var trap = function(height) {
-    
+    if(height.length === 0 || height === null){
+        return 0;
+    }
+    let left = 0;
+    let right = 2;
+    let mid = 1;
+    let count = 0;
+    let previousCount = 0;
+    while(right < height.length){ //didnt work because if left side is larger, wouldnt add 
+
+    }
 };
 
 /**
@@ -33,5 +43,6 @@ brute force method
         const water is the min of twoMaxes (as this is maxhieght of contained water) - current height
         result += water
     return result
+
 
 **/
