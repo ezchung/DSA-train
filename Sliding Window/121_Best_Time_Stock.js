@@ -34,6 +34,18 @@ What are the things that we will need to know
 - look at the start number
 - look at the end number
 
+PsuedoCode
+let left, right = 0, 1
+currentMax = 0
+iterate through array while right < array length
+    if right - left is negative, 
+        left = r; // 
+        right++;
+    if right - left is positive,
+        currentMax = max(currentMax, right-left)
+        right++;
+return currentMax
+
 Possible sliding window solution (non-fixed window)
 iterate through nums array
     start an array at 0 to the next number,
