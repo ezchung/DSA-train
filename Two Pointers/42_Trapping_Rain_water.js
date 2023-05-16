@@ -3,25 +3,52 @@
  * @return {number}
  */
 var trap = function(height) {
+    // Two pointers
     if(height.length === 0 || height === null){
         return 0;
     }
+
+    let l = 0;
+    let r = height.length-1;
+    let lMax = 0;
+    let rMax = 0;
     let result = 0;
-    for(let i = 0; i < height.length; i++){
-        let leftMax = 0;
-        let rightMax = 0;
-        for(let j = 0; j < i; j++){ //This for loop will check from beginning to point of i
-            leftMax = Math.max(leftMax, height[j]);
+    while(l < r){
+        lMax = Math.max(lMax, height[l]);
+        if(height[l] < lMax){ //current height of left index is less than the leftMax, add to result, lMax - height[l] so it cant be negative addition
+            result += lMax - height[l] //will skip the first 
         }
-        for(let j = i+1; j< height.length; j++){
-            rightMax = Math.max(rightMax, height[j]);
+
+        rMax = Math.max(rMax, height[l]);
+        if(height[r] < rMax){
+            result += rMax - height[r];
         }
-        //The two inner for loops made to check from one side and the other.
-        const water = Math.min(leftMax,rightMax) - height[i];
-        console.log(water, "water")
-        if(water>0) result += water; //Take out negative numbers
+
+        height[l] < height[r] ? l++ : r--;
     }
+
     return result;
+
+    
+    // Brute Force
+    // if(height.length === 0 || height === null){
+    //     return 0;
+    // }
+    // let result = 0;
+    // for(let i = 0; i < height.length; i++){
+    //     let leftMax = 0;
+    //     let rightMax = 0;
+    //     for(let j = 0; j < i; j++){ //This for loop will check from beginning to point of i
+    //         leftMax = Math.max(leftMax, height[j]);
+    //     }
+    //     for(let j = i+1; j< height.length; j++){
+    //         rightMax = Math.max(rightMax, height[j]);
+    //     }
+    //     const water = Math.min(leftMax,rightMax) - height[i];
+    //     console.log(water, "water")
+    //     if(water>0) result += water; //Take out negative numbers
+    // }
+    // return result;
 };
 
 /**
