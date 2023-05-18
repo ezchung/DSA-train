@@ -3,6 +3,22 @@
  * @return {number}
  */
 var maxProfit = function(prices) {
+    if(prices.length < 2 || prices === null) return 0;
+
+    let l = 0;
+    let r = 1;
+    let currentMax = 0;
+    while(r < prices.length){
+        if(prices[r]-prices[l] <= 0){
+            l = r;
+            r++;
+        }else{
+            currentMax = Math.max(currentMax, prices[r]-prices[l]);
+            r++;
+        }
+    }
+    return currentMax;
+    
     // let maxOutput = 0;
     // if(prices.length < 2) return maxOutput;
     // for(let i = 0; i < prices.length-1; i++){
@@ -13,19 +29,19 @@ var maxProfit = function(prices) {
     // }
     // return maxOutput;
 
-    let max = 0;
-    let start = 0;
-    let end = 0;
-    while(end < prices.length){
-        end += 1;
-        if(prices[end] - prices[start] < 0){
-            start += 1;
-        }else{
-            let checkPrice = prices[end] - prices[start];
-            max = Math.max(max, checkPrice);
-        }
-    }
-    return max;
+    // let max = 0;
+    // let start = 0;
+    // let end = 0;
+    // while(end < prices.length){
+    //     end += 1;
+    //     if(prices[end] - prices[start] < 0){
+    //         start += 1;
+    //     }else{
+    //         let checkPrice = prices[end] - prices[start];
+    //         max = Math.max(max, checkPrice);
+    //     }
+    // }
+    // return max;
 };
 
 /**
