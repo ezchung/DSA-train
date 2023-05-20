@@ -8,7 +8,7 @@ var lengthOfLongestSubstring = function(s) {
 
 /**
 Question
-    Find the longest substring witout repeat characters
+    Find the longest substring witout repeat characters. So in that substring there should be no same chars
 
 Notes
     Would capital letters be considered same?
@@ -21,11 +21,12 @@ General Psuedo
     currentMax
     iterate through string(while end < string.length)
         check the end of substring and the one before
-        if they are not the same, currentMax is max(currentMax, end-start)
-        if they are the same, start is now equal to the end
+        if they are no repeat characters, currentMax = max(currentMax, end-start+1)
+        if there are same characters, start is now equal to the end
         end++;
-    return currentMax
+    return 
 
-PsuedoCode
-
+TestCase
+"abbcabc"
+ 0123456
 */
