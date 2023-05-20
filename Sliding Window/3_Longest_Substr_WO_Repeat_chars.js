@@ -19,12 +19,18 @@ General Psuedo
     two pointers
         one for start of substring the next for the end of substring 
     currentMax
+    create an array to hold characters
     iterate through string(while end < string.length)
-        check the end of substring and the one before
-        if they are no repeat characters, currentMax = max(currentMax, end-start+1)
-        if there are same characters, start is now equal to the end
+        check if the current end character exists in the array, 
+        if yes means that char is a repeat, (move the window)
+            check the length of substring and find out if it is currently the longest
+            currentMax = max(currentMax, end-start+1)
+            start = end
+            array is now equal to [s[start]]
+        if not,
+            add the char to the array
         end++;
-    return 
+    return currentMax
 
 TestCase
 "abbcabc"
