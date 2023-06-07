@@ -4,23 +4,23 @@
  */
 var lengthOfLongestSubstring = function(s) {
     if(s.length < 2) return s.length === 0 ? 0 : 1;
-    let start = 0;
-    let end = 1;
-    let currentMax = 1;
-    let currentChars = [s[start]];
-    while(end < s.length){
-        if(currentChars.includes(s[end])){
-            console.log(end-start, end, start, currentChars)
-            start = end;
-            currentChars = [s[start]];
+    
+    let currentChars = [];
+    let maxLength = -Infinity;
+    for(let i = 0; i < s.length; i++){
+        let char = s[i];
+        let charIndex = currentChars.indexOf(char);
+        if(charIndex !== -1){
+            let currentSubstr = currentChars.length;
+            maxLength = Math.max(maxLength, currentSubstr);
+            currentChars = currentChars.slice(charIndex+1);
+            currentChars.push(char);
         }else{
-            console.log(currentMax, end, start, "after change of currentMax")
-            currentChars.push(s[end]);
-            currentMax = Math.max(currentMax, currentChars.length);
+            currentChars.push(char);
+            maxLength = Math.max(maxLength, currentChars.length);
         }
-        end++;
     }
-    return currentMax;
+    return maxLength;
 };
 
 /**
