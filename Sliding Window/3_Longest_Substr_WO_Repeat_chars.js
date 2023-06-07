@@ -32,6 +32,21 @@ Notes
     if the string is at least one, the minimum would be 1
     Sliding window
 
+Different Pseudo
+    currentChars = [] this would hold the previous chars
+        maxLength 
+        iterate through s 
+            let char = s[i]
+            if char is in currentChar
+                get the current length of currentChar
+                check length of maxLength and currentChar
+                get the index of currentChar
+                remove everything from the beginning to the index in that currentChar
+            if not
+                add to currentChar
+                check length of maxLength and currentChar
+        return maxLength
+
 General Psuedo
     two pointers
         one for start of substring the next for the end of substring 
