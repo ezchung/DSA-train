@@ -6,3 +6,13 @@
 var characterReplacement = function(s, k) {
     
 };
+
+/**
+Problem
+
+Notes
+
+TestCases
+
+PseudoCode
+ */
