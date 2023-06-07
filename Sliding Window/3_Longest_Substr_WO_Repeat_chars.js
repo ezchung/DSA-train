@@ -4,7 +4,7 @@
  */
 var lengthOfLongestSubstring = function(s) {
     if(s.length < 2) return s.length === 0 ? 0 : 1;
-    
+
     let currentChars = [];
     let maxLength = -Infinity;
     for(let i = 0; i < s.length; i++){
@@ -63,6 +63,17 @@ General Psuedo
             add the char to the array
         end++;
     return currentMax
+
+Solution Psuedo
+    create Set
+    leftPointer = 0, rightPointer doesnt need to be declared til for loop
+    max = 0
+    iterate through string with index rightPointer
+        while char is in set (so while set has the char of index rightP, remove the char of leftP and increment leftP)
+            remove the leftMost character
+            move left up by 1
+        add rightMost char to set (add the char to set and check the size of set (set.size))
+        max = Math.max(res, rightPointer-leftP + 1)
 
 TestCase
 "abbcabc"
