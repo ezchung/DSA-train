@@ -13,6 +13,7 @@ Problem
 
 Notes
 - s consists of only uppercase letters
+- dont actually have to make those changes
 - idea: look at substring and based on how many differences between characters, can implement k or the idea of k having performed some operation.
 - repeating question is can i change it.
     - never actually change the string, but using k, can tell if it can be changed
@@ -22,6 +23,15 @@ Notes
     differences, using tempK, achknowledge the change
         - Question with this one is: having different strings
 
+- replace the characters with least appearances
+
+- array or hash map
+    - count the number of occurences with each character
+- take substrLen - count[most frequent char]
+    will give us the number to see if we can do k operations
+    as long as this algorithm is less than or equal to k, valid substr
+        and the window can extend, otherwise the leftP moves until it is valid once again
+
 TestCases
 - ABC k:1 => longest would be 2
     - either AAC, BBC, ABB...
@@ -29,10 +39,22 @@ TestCases
     - AAAAAAAA
 
 PseudoCode
+    have the current hash map
+        purpose: to record whether the substring is valid by getting subStrLen-count of the most frequent char
     longestLen
-    tempK = k
-    currentChars = []
-    iterate through s
-        add the char to currentChars
-
+    leftP, rightP = 0
+    while rightP <= s.length
+        add the char to currentCharMap
+        find the most frequent char in the currentCharMap
+            the one with highest number
+        test if valid by substrLen (rightP-leftP)-mostFrequentChar#
+        if not valid
+            tempLeft
+            while left is less than right
+                check checking til valid or left = right
+            leftP = tempLeft
+        if valid
+            check with longestLen
+        rightP++;
+    return longestLen
  */
