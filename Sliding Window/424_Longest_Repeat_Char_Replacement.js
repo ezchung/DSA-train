@@ -8,20 +8,21 @@ var characterReplacement = function(s, k) {
     let rightP = 0;
     let map = {};
     let res = 0;
-    let maxCount = 0;
+    //let maxCount = 0;
 
     while (rightP < s.length) {
         addToMap(map, s[rightP]);
-        maxCount = Math.max(maxCount, map[s[rightP]]);
-        
+        //maxCount = Math.max(maxCount, map[s[rightP]]);
         let windowLen = getWindowLen(leftP, rightP);
-
-        let validWindow = windowLen - maxCount <= k;
+        let mostFreqChar = getMostFreqChar(map);
+        //let validWindow = windowLen - maxCount <= k;
+        let validWindow = windowLen - map[mostFreqChar] <= k;
         if (!validWindow) {
             removeFromMap(map, s[leftP]);
             leftP++;
         }
         windowLen = getWindowLen(leftP,rightP);
+        
         res = Math.max(res, windowLen);
         rightP++;
     }
@@ -59,6 +60,7 @@ function getMostFreqChar(map){
     }
     return maxChar;
 }
+
 
 /**
 Problem
