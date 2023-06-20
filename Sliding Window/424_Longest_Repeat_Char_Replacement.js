@@ -8,20 +8,20 @@ var characterReplacement = function(s, k) {
     let rightP = 0;
     let map = {};
     let res = 0;
-    let maxCount = 0; //To be updated if there was a maxCount, keeping track of the max count of any character within the current window
+    let maxCount = 0;
 
     while (rightP < s.length) {
         addToMap(map, s[rightP]);
         maxCount = Math.max(maxCount, map[s[rightP]]);
+        
         let windowLen = getWindowLen(leftP, rightP);
-        console.log(windowLen, leftP, rightP)
+
         let validWindow = windowLen - maxCount <= k;
         if (!validWindow) {
             removeFromMap(map, s[leftP]);
             leftP++;
         }
         windowLen = getWindowLen(leftP,rightP);
-        //was running into bug where leftP increment is not taken into account even when invalid
         res = Math.max(res, windowLen);
         rightP++;
     }
@@ -110,4 +110,13 @@ PseudoCode
             check with longestLen
         rightP++;
     return longestLen
+
+Logic Errors
+    - the getMostFreqChar function
+        not needed as with maxChar, everytime we should go through we would keep 
+        track of the max count of any character within the current window
+        - but this can work as well
+    - windowLen. previously had it only on the line before the if statement
+        was running into bug where leftP increment is not taken into account even when invalid
+    
  */
