@@ -4,8 +4,61 @@
  * @return {number}
  */
 var characterReplacement = function(s, k) {
-    
+    let leftP = 0;
+    let rightP = 0;
+    let map = {};
+    let res = 0;
+    let maxCount = 0; //To be updated if there was a maxCount, keeping track of the max count of any character within the current window
+
+    while (rightP < s.length) {
+        addToMap(map, s[rightP]);
+        maxCount = Math.max(maxCount, map[s[rightP]]);
+        let windowLen = getWindowLen(leftP, rightP);
+        console.log(windowLen, leftP, rightP)
+        let validWindow = windowLen - maxCount <= k;
+        if (!validWindow) {
+            removeFromMap(map, s[leftP]);
+            leftP++;
+        }
+        windowLen = getWindowLen(leftP,rightP);
+        //was running into bug where leftP increment is not taken into account even when invalid
+        res = Math.max(res, windowLen);
+        rightP++;
+    }
+
+    return res;
 };
+
+function getWindowLen(leftP, rightP){
+    return rightP-leftP+1;
+}
+
+function removeFromMap(map, letter){
+    map[letter]--;
+    if(map[letter] === 0){
+        delete map[letter];
+    }
+}
+
+function addToMap(map, letter){
+    if(letter in map){
+        map[letter]++;
+    }else{
+        map[letter] = 1;
+    }
+}
+
+function getMostFreqChar(map){
+    let maxCount = 0;
+    let maxChar = '';
+    for (let char in map) {
+        if (map[char] > maxCount) {
+        maxCount = map[char];
+        maxChar = char;
+        }
+    }
+    return maxChar;
+}
 
 /**
 Problem
@@ -47,7 +100,7 @@ PseudoCode
         add the char to currentCharMap
         find the most frequent char in the currentCharMap
             the one with highest number
-        test if valid by substrLen (rightP-leftP)-mostFrequentChar#
+        test if valid by substrLen (rightP-leftP)-mostFrequentChar# is less than or equal to k
         if not valid
             tempLeft
             while left is less than right
