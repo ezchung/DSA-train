@@ -6,24 +6,24 @@
 var checkInclusion = function(s1, s2) {
     if(s1.length > s2.length) return false;
 
-    let freqCounter = getFreqCounter(s1);
+    const freqCounter = getFreqCounter(s1);
     let leftP = 0;
     let rightP = 0;
     // console.log(Object.values(freqCounter))
     while(rightP < s2.length){
-        if(freqCounter[s2[rightP]] && freqCounter[s2[rightP]] > 0){
+        const char = s2[rightP];
+        if(freqCounter[char] && freqCounter[char] > 0){
             console.log("in first if ")
-            freqCounter[s2[rightP]]--;
+            freqCounter[char]--;
             if(checkIfSubstring(freqCounter)) return true;
-        }else if(freqCounter[s2[rightP]] && freqCounter[s2[rightP]] === 0){
+        }else if(freqCounter[char] === 0){
             console.log("in 2nd if ")
-            let char = s2[rightP];
             while(s2[leftP] !== char){
                 freqCounter[s2[leftP]]++;
                 leftP++;
             }
         }else{
-            console.log("in 3rd if ")
+            console.log("in 3rd if ", char)
             while(leftP !== rightP){
                 if(s1.indexOf(s2[leftP]) > -1) freqCounter[s2[leftP]]++;
                 leftP++;
