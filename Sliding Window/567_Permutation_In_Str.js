@@ -114,3 +114,28 @@ while rightP < s2.length
     rP++;
 
 */
+
+/**
+ * Next up PsuedoCode
+ * 
+ * Problem: Looking for a permutation of the s1 in s2
+ *      Looking for a window of the anagram
+ * O(26n) using hash map or O(n)
+ * 
+ * O(n) + O(26)
+ * s1 count, s2 count
+ * matches (value): purpose so we do not need to compare entire hash map every time. 
+ *          will store the exact number of matches between the two hash maps
+ *          once we have 26 matches, result is true
+ *              **Initial match number should be the number of different chars in s1
+ * Idea
+ *      have the initial matches
+ *      when matches equals 26 return true
+ *      when new char is added
+ *          remove the previous char from s2 count
+ *          add the new char to s2 count
+ *          look at the two positions in s1
+ *              update matches based on whether the number of trues
+ *  Edge case
+ *      s1 longer than s2? return false
+ */
