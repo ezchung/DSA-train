@@ -138,4 +138,21 @@ while rightP < s2.length
  *              update matches based on whether the number of trues
  *  Edge case
  *      s1 longer than s2? return false
+ * 
+ * Create two maps of s1 and s2
+ *      s1 will have content
+ *      s2 will be 26 spots of 0
+ * Create matches based on unqiue chars in s1 (can just get length of Set(s1))
+ * leftP = 0
+ * rightP = s1.length
+ * with this create inital s2 map
+ * and create check inital matches ( O(26) )
+ * leftP and rightP++
+ * while rightP < s2.length
+ *      if matches === 26, return true
+ *      decrement s2[leftP] from s2 count
+ *      increment s2[rightP] to s2 count
+ *      if s2[leftP] === s1[leftP], matches + 1; else --
+ *      if s2[rightP] === s1[rightP] matches ++; else --
+ * return false
  */
