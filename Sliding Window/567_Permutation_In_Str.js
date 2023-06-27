@@ -45,5 +45,30 @@ while rightP is less than s2.length
 
 return false
 
+*** without any extra map
+Idea:
+while rP is less than s2 length
+    find if valid character
+    if it is and greater than 0 then subtract
+    else if it is but not greater than 0
+        then find the location where rP character is and move lP up to there and add whatever character needs to be added back
+    if not than move lP up to rP and add the valid characters back to freqCounter
+
+while rightP < s2.length
+    if freqCounter[s2[rightP]] exists and greater than 0;
+        freqCounter[s2[rightP]]--;
+        check if satisfies condition
+            get freqCounter.values
+            if true that all values are 0, then return true
+    else if freqCounter[s2[rightP]] exists but not greater than 0
+        let char = s2[rightP]
+        while s2[leftP] !== char
+            freqCounter[s2[lP]]++;
+            lP++
+    else
+        while lP !== rP
+            get the value of freqCounter[s2[lP]]++;
+            lP++;
+    rP++;
 
 */
