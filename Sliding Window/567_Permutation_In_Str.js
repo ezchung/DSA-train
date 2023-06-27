@@ -3,51 +3,115 @@
  * @param {string} s2
  * @return {boolean}
  */
-var checkInclusion = function(s1, s2) {
+var checkInclusion2 = function(s1, s2) {
     if(s1.length > s2.length) return false;
 
-    const freqCounter = getFreqCounter(s1);
-    let leftP = 0;
-    let rightP = 0;
-    // console.log(Object.values(freqCounter))
-    while(rightP < s2.length){
-        const char = s2[rightP];
-        if(freqCounter[char] && freqCounter[char] > 0){
-            console.log("in first if ")
-            freqCounter[char]--;
-            if(checkIfSubstring(freqCounter)) return true;
-        }else if(freqCounter[char] === 0){
-            console.log("in 2nd if ")
-            while(s2[leftP] !== char){
-                freqCounter[s2[leftP]]++;
-                leftP++;
-            }
-        }else{
-            console.log("in 3rd if ", char)
-            while(leftP !== rightP){
-                if(s1.indexOf(s2[leftP]) > -1) freqCounter[s2[leftP]]++;
-                leftP++;
-            }
-        }
-        console.log(freqCounter, leftP, rightP)
-        rightP++;
+    const s1Count = {};
+    const s2Count = {};
 
+    const letters = "abcdefghijklmnopqrstuvwxyz"
+    for(let i = 0; i<letters.length; i++){
+        const letter = letters[i];
+        s1Count[letter] = 0;
+        s2Count[letter] = 0;
+    }
+    
+    //Create two objects
+    for(const ch of s1){
+        if(!(ch in s1Count)){
+            s1Count[ch] = 0;
+            s2Count[ch] = 0;
+        }
+        s1Count[ch]++;
+    }
+
+    //Add the char count for the first window
+    for(let i = 0; i < s1.length; i++){
+        const char = s2[i];
+        if(char in s1Count){
+            s2Count[char]++;
+        }
+    }
+
+    let uniqueChars = new Set(s1);
+    let matches = 26;
+    
+    for(const ch of uniqueChars){
+        if(s1Count[ch] !== s2Count[ch]){
+            matches--;
+        }
+    }
+
+    //If true after first time
+    if(matches === 26) return true;
+
+    //starting points
+    let leftP = 1;
+    let rightP = s1.length;
+
+    while(rightP < s2.length){
+        if(matches === 26) return true;
+        const leftChar = s2[leftP];
+        const rightChar = s2[rightP];
+        s2Count[leftChar]--;
+        s2Count[rightChar]++;
+        if(s2Count[leftChar] === s1Count[leftChar]) matches++
+        else matches--;
+        if(s2Count[rightChar] === s1Count[rightChar]) matches++
+        else matches--;
+        leftP++;
+        rightP++;
+        console.log(matches, s2Count, "s2", s1Count)
     }
     return false;
 };
 
-const getFreqCounter = (s1) => {
-    let counter = {};
-    for(let i = 0; i < s1.length; i++){
-        counter[s1[i]] = counter[s1[i]] + 1 || 1
-    }
-    return counter;
-}
 
-const checkIfSubstring = (freqCounter) => {
-    let values = Object.values(freqCounter);
-    return values.every(val => val === 0) 
-}
+// var checkInclusion = function(s1, s2) {
+//     if(s1.length > s2.length) return false;
+
+//     const freqCounter = getFreqCounter(s1);
+//     let leftP = 0;
+//     let rightP = 0;
+//     // console.log(Object.values(freqCounter))
+//     while(rightP < s2.length){
+//         const char = s2[rightP];
+//         if(freqCounter[char] && freqCounter[char] > 0){
+//             console.log("in first if ")
+//             freqCounter[char]--;
+//             if(checkIfSubstring(freqCounter)) return true;
+//         }else if(freqCounter[char] === 0){
+//             console.log("in 2nd if ")
+//             while(s2[leftP] !== char){
+//                 freqCounter[s2[leftP]]++;
+//                 leftP++;
+//             }
+//         }else{
+//             console.log("in 3rd if ", char)
+//             while(leftP !== rightP){
+//                 if(s1.indexOf(s2[leftP]) > -1) freqCounter[s2[leftP]]++;
+//                 leftP++;
+//             }
+//         }
+//         console.log(freqCounter, leftP, rightP)
+//         rightP++;
+
+//     }
+//     return false;
+// };
+
+// const getFreqCounter = (s1) => {
+//     let counter = {};
+//     for(let i = 0; i < s1.length; i++){
+//         counter[s1[i]] = counter[s1[i]] + 1 || 1
+//     }
+//     return counter;
+// }
+
+// const checkIfSubstring = (freqCounter) => {
+//     let values = Object.values(freqCounter);
+//     return values.every(val => val === 0) 
+// }
 
 /**
 Problem
