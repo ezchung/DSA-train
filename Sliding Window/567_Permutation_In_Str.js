@@ -4,8 +4,50 @@
  * @return {boolean}
  */
 var checkInclusion = function(s1, s2) {
-    
+    if(s1.length > s2.length) return false;
+
+    let freqCounter = getFreqCounter(s1);
+    let leftP = 0;
+    let rightP = 0;
+    // console.log(Object.values(freqCounter))
+    while(rightP < s2.length){
+        if(freqCounter[s2[rightP]] && freqCounter[s2[rightP]] > 0){
+            console.log("in first if ")
+            freqCounter[s2[rightP]]--;
+            if(checkIfSubstring(freqCounter)) return true;
+        }else if(freqCounter[s2[rightP]] && freqCounter[s2[rightP]] === 0){
+            console.log("in 2nd if ")
+            let char = s2[rightP];
+            while(s2[leftP] !== char){
+                freqCounter[s2[leftP]]++;
+                leftP++;
+            }
+        }else{
+            console.log("in 3rd if ")
+            while(leftP !== rightP){
+                if(s1.indexOf(s2[leftP]) > -1) freqCounter[s2[leftP]]++;
+                leftP++;
+            }
+        }
+        console.log(freqCounter, leftP, rightP)
+        rightP++;
+
+    }
+    return false;
 };
+
+const getFreqCounter = (s1) => {
+    let counter = {};
+    for(let i = 0; i < s1.length; i++){
+        counter[s1[i]] = counter[s1[i]] + 1 || 1
+    }
+    return counter;
+}
+
+const checkIfSubstring = (freqCounter) => {
+    let values = Object.values(freqCounter);
+    return values.every(val => val === 0) 
+}
 
 /**
 Problem
