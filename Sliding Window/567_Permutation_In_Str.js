@@ -214,9 +214,43 @@ while rightP < s2.length
  * leftP and rightP++
  * while rightP < s2.length
  *      if matches === 26, return true
- *      decrement s2[leftP] from s2 count
+ *      decrement s2[leftP-1] from s2 count
  *      increment s2[rightP] to s2 count
  *      if s2[leftP] === s1[leftP], matches + 1; else --
  *      if s2[rightP] === s1[rightP] matches ++; else --
  * return false
+ */
+
+/**
+ * Neatcode uses charcodeat ideas
+ * Create two maps
+ * Matches variable : shortcut to not compare the two maps. If matches is 26, then correct
+ * 
+ * edge case
+ * if s1 length > s2 length, return false
+ * create two objects for s1Count, s2Count
+ * for loop til length of s1
+ *      
+ */
+
+/**
+ * check if s1 is longer than s2
+ * create obj to store freq of required string
+ * for loop
+ *  obj[s1[i]] = current number (first iteration will be undefined, then 0) + 1;
+ * leftP, rightP = 0; requiredLength (len of substr required in s2) = s1.len
+ * while right < s2 length
+ *  If s2[right] char in s1, then decrease requiredLen
+ *  since we encountered new char ie s2[right] decrease count in obj
+ *      even if it is not present in obj we only care about needed
+ *  right increments
+ *  
+ *  If requiredLen is 0, means we found a match of the s2 substring
+ *  
+ *  If window len is equal to s1 length, then have to remove left el of window
+ *      left++ and add new element from right to next iteration
+ *  Code:if right - left === s1.length
+ *      if left element we are removing was a required character then increase reqLen
+ *      increase count of left element from window
+ *      decrease window size from left 
  */
