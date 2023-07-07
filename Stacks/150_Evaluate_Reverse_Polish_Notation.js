@@ -10,22 +10,15 @@ var evalRPN = function(tokens) {
     stack.push(tokens[0]);
     stack.push(tokens[1]);
     let i = 2;
-    while(stack.length >= 1){ //Error with this
-        // console.log(tokens[i], stack)
+    while(stack.length >= 1){ 
         if(operators.indexOf(tokens[i]) >= 0){
             let second = Number(stack.pop());
             let first = Number(stack.pop());
-            console.log(second, stack, "here")
-            // console.log(first, second, tokens[i])
             let result;
             if(tokens[i] === '+') result = first+second
             else if (tokens[i] === '-') result = first-second
             else if (tokens[i] === '*') result = first*second
-            else if (tokens[i] === '/') {
-                //should truncate toward zero
-                if(second > 0) result = Math.floor(first/second)
-                else result = Math.ceil(first/second) //Results in negative 0, if negative second
-            }
+            else if (tokens[i] === '/') result = Math.trunc(first/second)
             if(i === tokens.length-1) return result
             stack.push(result);
         }
@@ -33,7 +26,6 @@ var evalRPN = function(tokens) {
             stack.push(Number(tokens[i]))
         }
         i++;
-        // console.log(stack,stack.length, "at the end")
     }
 };
 
@@ -45,6 +37,7 @@ Always rounds down when divided.
 Reverse Polish notation
     the two numbers preceding the operator happens first
 when I see an operator,look at previous two numbers and that will be the result
+Truncate: Removes the decimal points from the number. 
 
 
 PsuedoCode
