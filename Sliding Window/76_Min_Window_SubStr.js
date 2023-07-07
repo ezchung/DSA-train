@@ -243,3 +243,12 @@ var minWindow = function(s, t) {
  *      The second while loop will then end. And we can move from the current window and see if there is a better min result
  *      
  */
+
+ /**
+  * Another way people have solved is with two objects and having two variables
+  * 1 obj for the t string. Another for the same thing but the window
+  * 2 variables: has and needs: has is for whether the value is equal to the value of the number of chars
+  *     needs is for the number of characters that needed to align their values
+  * {a: 0, b: 0, c: 0}  {a: 1, b: 1, c: 1}
+  * has:                needs: 3
+  */
