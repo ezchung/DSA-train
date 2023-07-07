@@ -1,34 +1,48 @@
 var MinStack = function() {
-    
+    this.stack = [];
+    this.minStack = [];
 };
+
 
 /** 
  * @param {number} val
  * @return {void}
  */
 MinStack.prototype.push = function(val) {
-    
+    this.stack.push(val)
+    if(this.minStack.length === 0){
+        this.minStack.push(val);
+    }else{
+        let stackSize = this.stack.length-1;
+        let currentMin = this.minStack[stackSize-1] //getting prev min
+        let min = Math.min(currentMin, val);
+        this.minStack.push(min);
+    }
+    console.log(this.minStack, "in push")
 };
 
 /**
  * @return {void}
  */
 MinStack.prototype.pop = function() {
-    
+    this.minStack.pop();
+    return this.stack.pop();
 };
 
 /**
  * @return {number}
  */
 MinStack.prototype.top = function() {
-    
+    let size = this.stack.length-1;
+    return this.stack[size];
 };
 
 /**
  * @return {number}
  */
 MinStack.prototype.getMin = function() {
-    
+    let size = this.stack.length-1;
+    return this.minStack[size];
 };
 
 /**
@@ -38,17 +52,27 @@ MinStack.prototype.getMin = function() {
  * PsuedoCode with stack as array
  * MinStack
  *      create stack as array
- *      create min variable
+ *      create min variable array
  *          has to remember the min variable order so that when i push
+ *          at the current stack what is the minimum value
  * push: pushes element val onto the stack
  *      this.stack.push(val)
  *      
+ *      look at val and look at current min
+ *      if min.length === 0
+ *          this value is the minimum
+ *      else
+ *          look at previous stack elements idx in the min array and see which one is smaller
+ *          and place that as the min for the idx
  *      
  * pop: removes the lement on the top of the stack
+ *      remove from both minStack and stack
  * 
  * top: get the top element of stack
+ *      get size of stack and return the element
  * 
  * getMin: retrieves the minimum element in stack
+ *      get the size of stack and retrieve the most recent stack
  */
 
 /**
