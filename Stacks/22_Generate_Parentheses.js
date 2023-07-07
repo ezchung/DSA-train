@@ -3,8 +3,31 @@
  * @return {string[]}
  */
 var generateParenthesis = function(n) {
-    
+    let stack = [];
+    let res = [];
+    // console.log(createPairs(stack, res, 0,0, n))
+    return createPairs(stack, res, 0,0, n);
 };
+
+let createPairs = (stack, res, openN, closedN, n) => {
+    if(openN === closedN && openN === n){
+        let createdPairs = stack.join("");
+        res.push(createdPairs);
+        return
+        //remember with recursion, this return just ends the loop. So res is added at the end. so when at the end of function, it is returned, that is the final result
+    }
+    if(openN < n){
+        stack.push("(");
+        createPairs(stack,res, openN+1, closedN, n);
+        stack.pop();
+    }
+    if(closedN < openN){
+        stack.push(")");
+        createPairs(stack,res, openN, closedN+1, n);
+        stack.pop();
+    }
+    return res
+}
 
 /**
 Problem
