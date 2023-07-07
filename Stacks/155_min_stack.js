@@ -113,3 +113,7 @@ Another solution (similar idea)
  * monotonic stack : always non-decreasing or non-increasing
  * 
  */
+
+/**
+ * Another way: Linked Lists
+ */
