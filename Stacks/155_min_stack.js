@@ -32,6 +32,26 @@ MinStack.prototype.getMin = function() {
 };
 
 /**
+ * Stack LIFO
+ * Notes: O(1) constant time
+ * 
+ * PsuedoCode with stack as array
+ * MinStack
+ *      create stack as array
+ *      create min variable
+ *          has to remember the min variable order so that when i push
+ * push: pushes element val onto the stack
+ *      this.stack.push(val)
+ *      
+ *      
+ * pop: removes the lement on the top of the stack
+ * 
+ * top: get the top element of stack
+ * 
+ * getMin: retrieves the minimum element in stack
+ */
+
+/**
  hint: think of each node having a corresponding min value
  push
  - in array for min, check the value and insert the value where it belongs
