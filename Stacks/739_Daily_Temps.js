@@ -13,9 +13,35 @@ Create an array of number of days/idx we need to go past to reach a higher numbe
 Notes 
 Higher the warmer
 end will always be 0
-Monotonic Decreasing Stack
 
-Psuedo1
+Psuedo Monotonic Decreasing Stack bottom up
+
+res = array(temp len).fill[0]
+stack = [] 
+for idx in temperatures
+    while stack exists and temp[idx] > (greater than) the most recent element on stack[-1][0] which gets the temp
+        let temp, stackIdx = stack.pop()
+        res[stackIdx] = (idx-stackIdx)
+    //otherwise, add to stack
+    stack.push([temperatures[idx], idx])
+return res
+*/
+
+/** Accepted - bottom up***/
+var dailyTemperatures = function(temperatures) {
+    let res = new Array(temperatures.length).fill(0)
+    let stack = [];
+    for(let idx in temperatures){
+        while(stack.length && temperatures[idx] > temperatures[stack[stack.length-1]]){
+            let stackIdx = stack.pop();
+            res[stackIdx] = idx - stackIdx;
+        }
+        stack.push(idx);
+    }
+    return res;
+};
+
+/** Psuedo1
 Seems like recursive stack problem where which each date we continue and look for the dates.
 main function
 len = temperatures.length;
@@ -34,30 +60,7 @@ base case
     if temp[currentNumDay] < temp[idx]
         add to stack
         recursion(currentNumDay+1, idx, res, temps, stack)
-
-Psuedo2 Monotonic Decreasing Stack
-create result array and stack array = temps[0]
-let idx = 1
-while stack.length > 0
-    push temp[i] into stack
-    if temp[i] < stack[i-1]
-        i++    
-        continue;
-    else temp[i] > stack[i-1]
-        while the number is greater than the pointer's element
-            add the distance between the two into the res array at their respective indices
-
-res = array(temp len).fill[0]
-stack = [] #pair: [temp, idx]
-for idx in temperatures
-    while stack exists and temp[idx] > (greater than) the most recent element on stack[-1][0] which gets the temp
-        let temp, stackIdx = stack.pop()
-        res[stackIdx] = (idx-stackIdx)
-    //otherwise, add to stack
-    stack.push([temperatures[idx], idx])
-return res
 */
-
 
 var dailyTemperaturesTP = function(temperatures) {
     let len = temperatures.length;
