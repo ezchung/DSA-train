@@ -13,6 +13,27 @@ Create an array of number of days/idx we need to go past to reach a higher numbe
 Notes 
 Higher the warmer
 end will always be 0
+
+Psuedo
+Seems like recursive stack problem where which each date we continue and look for the dates.
+main function
+len = temperatures.length;
+let res = new Array(len).fill(0)
+recursion(currentNumDay,idx, res,temperatures)
+
+recursive stack function
+stack would require me to create along the way and assign the correct position
+**Maybe instead of waitDays, can do height of stack
+base case
+    if temp[currentNumDay] > temp[idx]
+        get height of stack and add the height to res[idx]
+        return
+    if currentNumDay >= temperatures.length/res.length
+        return
+    if temp[currentNumDay] < temp[idx]
+        add to stack
+        recursion(currentNumDay+1, idx, res, temps, stack)
+    
 */
 
 
@@ -56,3 +77,41 @@ while i !== temp.length-1
     else j++
 return res
  */
+
+/**
+ * Not working due to stack overflow
+ */
+var dailyTemperaturesStackOverflow = function(temperatures) {
+    let len = temperatures.length;
+    let res = new Array(len).fill(0)
+    getWaitDaysSO(0,0,res, temperatures, [])
+    return res;
+};
+//Currently not iterating through everything. Idx is not moving
+let getWaitDaysSO = (currentNumDay, idx, res, temps, stack) => {
+    //Idx should move up if idx is not at the end
+    if(temps[currentNumDay] > temps[idx]){
+        let waitDays = stack.length;
+        res[idx] = waitDays;
+        if(idx !== temps.length){
+            let newCurrent = idx + 1
+            getWaitDaysSO(newCurrent,newCurrent, res, temps, []);
+        }
+        return
+    }
+    //If at the end of the temps array and reached here, means none greater
+    //Idx should move up if idx is not at the end
+    if(currentNumDay >= temps.length){
+        if(idx !== temps.length){
+            let newCurrent = idx + 1
+            getWaitDaysSO(newCurrent,idx+1, res, temps, []);
+        }
+        return
+    }
+    //If colder or equal to, add to stack and continue. idx stays the same
+    if(temps[currentNumDay] <= temps[idx]){
+        stack.push(temps[currentNumDay]);
+        getWaitDaysSO(currentNumDay+1,idx, res, temps, stack);
+    }
+    return res
+}
