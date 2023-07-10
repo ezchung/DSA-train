@@ -35,4 +35,15 @@ while(list1Curr || list2Curr){
 
 }
 
+While(list1&list2) so while both are active
+    if(list1.val <= list2.val)
+        curr.next = list1
+        list1 = list1.next
+    else
+        curr.next = list2
+        list2 = list2.next
+
+at the end add whichever has something left
+curr.next = list1 || list2
+return mergedList
  */
