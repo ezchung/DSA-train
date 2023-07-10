@@ -37,3 +37,12 @@ prev is then reassign to current and continue from there
 while current is not null
 
 */
+
+/**
+ * Recursively
+ * 
+ * Head => 1 => 2 => 3 => Null
+ * Main the last element as main head
+ * 
+ * 
+ */
