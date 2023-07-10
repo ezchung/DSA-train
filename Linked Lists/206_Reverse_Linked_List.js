@@ -11,7 +11,19 @@
  */
 
 var reverseList = function(head) {
+    const isBaseCase = !head?.next;
+    //no head and no next
+    if (isBaseCase) return head;
 
+    let prev = null;
+    let curr = head;
+    while(curr){
+        let temp = curr.next;
+        curr.next = prev;
+        prev = curr;
+        curr = temp;
+    }
+    return prev
 };
 
 /**
