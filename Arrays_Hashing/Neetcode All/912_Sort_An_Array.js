@@ -57,6 +57,31 @@ split into two functions
         make pointers
         the while loop
 
+var sortArray = function(nums) {
+
+    function mergeSort(arr){
+        if(arr.length <= 1) return arr;
+        let mid = Math.floor((arr.length-1)/2);
+        let left = arr.slice(0, mid);
+        let right = arr.slice(mid);
+        return merge(mergeSort(left), mergeSort(right));
+    }
+
+    function merge(l,r){
+        let sorted = [];
+        while(l.length && r.length){
+            if(l[0] <= r[0]){
+                sorted.push(l.shift()) //gets me the first
+            }else{
+                sorted.push(r.shift())
+            }
+        }
+        //give me sorted and the rest of whatever remains
+        return [...sorted,...left,...right]
+    }
+    return mergeSort(nums);    
+};
+
 quicksort => nLogN
 
 heapSort => nLogN
