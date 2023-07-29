@@ -3,7 +3,32 @@
  * @return {void} Do not return anything, modify nums in-place instead.
  */
 var sortColors = function(nums) {
-    
+    let min = Math.min(...nums);
+    let max = Math.max(...nums);
+    if(min === max) return nums;
+
+    let j = 0;
+    let i = 0;
+    while(i < nums.length){
+        while(j < nums.length){
+            // console.log(nums, min, i, j)
+            if(nums[j] === min){
+                let temp = nums[i];
+                nums[i] = nums[j];
+                nums[j] = temp;
+                i++;
+                break;
+            }else if(j === nums.length-1){
+                min++;
+                j = i;
+            }else{
+                j++;
+            }
+        }
+        j = i;
+        // console.log(nums, min, i, j, "outside")
+    }
+    return nums
 };
 
 /**
