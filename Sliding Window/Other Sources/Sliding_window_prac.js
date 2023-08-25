@@ -28,7 +28,18 @@ while secondPointer is not equal to the end of arr
 */
 
 function maxSubarraySum([arr, n]){
-
+    let maxSum = 0;
+    let tempSum = 0; //different addition
+    if(arr.length < n) return null;
+    for(let i = 0; i < n; i++){
+        maxSum += arr[i];
+    }
+    tempSum = maxSum;
+    for(let i = n; i < arr.length; i++){           //iterate from num. so starts from 2 (i is the end)
+        tempSum = tempSum - arr[i-n] + arr[i];     //which works as sliding window cause moving tempSum around.
+        maxSum = Math.max(maxSum, tempSum);
+    }
+    return maxSum;
 }
 
 /*
