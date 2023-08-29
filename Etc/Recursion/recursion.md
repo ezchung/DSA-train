@@ -50,3 +50,26 @@ function factorial(num, total = 1){
     if(num === 1) return total;
     return num * factorial(num-1, total);
 }
+
+Helper Method Recursion
+- purpose to have a variable that you can manipulate without having to pass into recurse function.
+function outer(input){
+    let outerScopedVariable = []
+
+    function helper(helperInput){
+        //modify the outerScopedVariable
+        helper(helperInput--)
+    }
+
+    helper(input)
+
+    return outerScopedVariable
+}
+
+**Part of Graphs Section
+depthFirstRecursive(start){
+    result = []
+    visited = {}
+    ...
+    dfs(vertex)
+}
