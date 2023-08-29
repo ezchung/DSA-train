@@ -12,7 +12,19 @@ maxSubarraySum([1,2,5,2,8,1,5],2) //10
 /*
 Sliding Window approach
 
+input: arr and n
+output: int
 
+add all the numbers from 0 to n
+currentMax = the value above
+firstPointer = 1;
+secondPointer = n;
+while secondPointer is not equal to the end of arr
+    add the secondPointer's value
+    subtract the firstPointer-1's value
+    make the two lines above a single value and check if greater than current max
+        adjust currentMax accordingly
+    move both pointers up
 */
 
 function maxSubarraySum([arr, n]){
