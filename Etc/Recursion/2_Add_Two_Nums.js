@@ -10,12 +10,20 @@
  * @param {ListNode} l2
  * @return {ListNode}
  */
+
+/*
+Test Case That Failed
+- l1 = [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1]
+- l2 = [5,6,4]
+To make it work with larger arrays, you need to be careful with the JavaScript number 
+precision limitations when working with very large numbers. JavaScript numbers 
+have a limited range and can only accurately represent integers up to a certain value. 
+If numbers that exceed this limit, will face issues with accuracy.
+*/
 var addTwoNumbers = function(l1, l2) {
     let reverseOne = +getReversedNumber(l1).join("");
     let reverseTwo = +getReversedNumber(l2).join("");
-    console.log(reverseOne, reverseTwo)
     let added = reverseOne+reverseTwo;
-    console.log(added)
     return createLL(added)
 };
 
