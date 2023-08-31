@@ -12,6 +12,37 @@ Approach
     > Head pointer moved to next node in the result LL
     > Sum is set to the carray and carry set to 0 for the next iteration
 > return result LL
+
+Translation Approach
+> Create returning lst
+> iteratation starts while l1 has a value, l2 has a value, or sum is greater than 0
+    --- meaning lists have room to go or sum is the final input
+    > if l1 or l2 is not null
+        > add the value to sum and l1 is pushed to l1's next val or position
+    > if sum is greater than 10 (since we are adding)
+        > carry is given value 1 as starting for next.
+            --this is because when you are adding two digits, if their sum is 10 or more, you need 
+            to carry over the extra value to the next addition. For example, let's consider adding 
+            two digits: 7 + 8. The sum is 15, which is greater than 10. In regular arithmetic, you 
+            would write down the 5 and carry over the 1 to the next column. Similarly, 
+            in the context of adding linked list nodes, you need to carry over the 1 
+            to the next addition.
+    > head.val is set to sum
+    > if condition of when l1 or l2 are not null or carry is greater than 0
+        > head.next is set to create new ListNode initially set to carry
+        ---This creates a new node with the value of carry and adds it to the next property of the 
+        current head node. This step essentially adds a new node to the result linked list, representing
+        the carry value if it's present.
+        > head = head.next;:
+        ---After adding the new node, this line updates the head pointer to point to the newly added node. 
+        This is important because you want the head pointer to always point to the last node in the result 
+        linked list, so that the next node can be added correctly.
+        
+        ---Purpose: ensures that the carry value is properly propagated to the next digit addition, 
+        and it also handles cases where one of the linked lists might have ended before the other, 
+        but there's still a carry value left to be considered in the addition process.
+    > sum is given value of carry
+    > carry is reset to 0
 */
 
 /**
