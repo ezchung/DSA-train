@@ -1,3 +1,20 @@
+/*
+Intuition
+> Traverse both linked lists simultaneously & add their node values & store the 
+result in a new linked list
+
+Approach
+> Iterates through the linked lists until both LLs are null and the sum is greater than 0
+    > calculate sum by adding the values of the current nodes of l1 and l2 and the carry
+        from the prev. iteration
+    > If sum is greater than or equal to 10, carry over is calculated and sum is reduced by 10
+    > New node is created with teh value of sum and is added to the result LL using the head pointer
+    > Head pointer moved to next node in the result LL
+    > Sum is set to the carray and carry set to 0 for the next iteration
+> return result LL
+*/
+
+
 /**
  * Definition for singly-linked list.
  * function ListNode(val, next) {
