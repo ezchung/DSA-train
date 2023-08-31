@@ -11,9 +11,35 @@
  * @return {ListNode}
  */
 var addTwoNumbers = function(l1, l2) {
-
+    let reverseOne = +getReversedNumber(l1).join("");
+    let reverseTwo = +getReversedNumber(l2).join("");
+    console.log(reverseOne, reverseTwo)
+    let added = reverseOne+reverseTwo;
+    console.log(added)
+    return createLL(added)
 };
 
+let getReversedNumber = function(start, newArr=[]){
+    if(!start) return;
+    newArr.unshift(start.val)
+    getReversedNumber(start.next, newArr);
+    return newArr;
+}
+
+let createLL = function(val){
+    let remainder = val % 10;
+    val = Math.floor(val / 10);
+    const head = new ListNode(remainder)
+    let curr = head;
+    while(val > 0){
+        remainder = val % 10;
+        val = Math.floor(val / 10);
+        const newNode = new ListNode(remainder);
+        curr.next = newNode;
+        curr = newNode;
+    }
+    return head;
+}
 
 
 /*
