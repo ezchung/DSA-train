@@ -34,5 +34,37 @@ Binary Search
         - log base 2 n
             - 2^4 = 16
                 - log base 2 16 = 4
-Niave String Searching Algo
+
+- Searching for substrings in a larger string
+Naive String Searching Algo
+- most basic way of doing problem above
+- Suppose you want to count the number of times a smaller string appears 
+
+PsuedoCode
+- function takes two strings
+    - Loop over the longer string
+    - Loop over the shorter string
+    - If chars don't match, break out of inner loop
+    - If match, keep going
+    - If complete the inner loop and find match, increment the count of matches
+- return count
+
+Solution
+function naiveSearch(long, short){
+    let count = 0;
+    for(let i = 0; i < long.length; i++){
+        for(let j = 0; j < short.length; j++){
+            if(short[j] !== long[i]){
+                break;
+            }
+            if(j === short.length -1){
+                count++;
+            }
+        }
+    }
+    return count;
+}
+
+naiveSearch("lorie loled", "lol")
+
 KMP string searching
