@@ -122,6 +122,7 @@ let a = 1, b =2,
 # Selection sort
 - Similar to bubble sort, but instead of firstplacing large values into sorted position, it places smallest values into sorted position
 [5,3,4,1,2] ==> find min value and move to front [1,3,4,5,2]
+- Only make one swap at the end of loop. Selection sort is better than bubble sort if want to minimize the number of swaps. Bubble sort requries you to swap over and over. selection iterates and compares a lot but only makes one swap in the end.
 
 ### PsuedoCode
 - Store the first element as the smallest value so far
