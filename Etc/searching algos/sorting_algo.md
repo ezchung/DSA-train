@@ -45,3 +45,24 @@ function compareByLen(str1, str2){
     return str1.length-str2.length
 }
 //sorts by length in ascending order
+Big O = O(NlogN)
+
+BubbleSort
+- Compare to next item. If first larger, swap with next. Continue through line
+    > Largest value is created and established
+    > Largest value bubbled or sinked to the top or the end respectively
+- Repeat process from beginning 
+>> [29,10,14,30,37,14,18] ==> After first iteration [10,14,29,30,14,18,37] ==> [10,14,29,14, 18,30,37]
+- A sorting algorithm where the largest values bubbles up to the top
+
+Ways to swap
+function swap(arr,idx1, idx2){
+    let temp = arr[idx1];
+    arr[idx1] = arr[idx2];
+    arr[idx2] = temp
+}
+or
+let swap = (arr,idx1,idx2) => {
+    [arr[idx1], arr[idx2]] = [arr[idx2],arr[idx1]];
+}
+
