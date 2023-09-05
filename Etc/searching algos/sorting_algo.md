@@ -47,7 +47,7 @@ function compareByLen(str1, str2){
 //sorts by length in ascending order
 Big O = O(NlogN)
 
-BubbleSort
+# BubbleSort
 - Compare to next item. If first larger, swap with next. Continue through line
     > Largest value is created and established
     > Largest value bubbled or sinked to the top or the end respectively
@@ -68,8 +68,41 @@ let swap = (arr,idx1,idx2) => {
 
 Bubble Sort PsuedoCode
 - Start looping from with a variable called i at the end of the array towards the beginning
-- Start inner loop with variable j from teh beginning of array until i-1
+- Start inner loop with variable j from the beginning of array until i-1
 - If arr[j] is greater than arr[j+1], swap
 - Return sorted array
 
-Implementation
+### Implementation
+Less optimized version (two nested loops)
+function bubbleSort(arr){
+    for(let i = 0; i < arr.length, i++){
+        for(let j = 0; j < arr.length, j++){
+            if(arr[j] > arr[j+1]){
+                //SWAP
+                let temp = arr[j];
+                arr[j] = arr[j+1];
+                arr[j+1] = temp;
+            }
+        }
+    }
+    return arr
+}
+//checks all the way to end even though we already know the highest was bubbled up
+
+function bubbleSort(arr){
+    for(let i = arr.length; i > 0, i--){
+        for(let j = 0; j < i-1, j++){
+            if(arr[j] > arr[j+1]){
+                //SWAP
+                let temp = arr[j];
+                arr[j] = arr[j+1];
+                arr[j+1] = temp;
+                //or
+                [arr[j],arr[j+1]] = [arr[j+1], arr[j]]
+            }
+        }
+    }
+    return arr
+}
+let a = 1, b =2,
+[a,b] = [b,a] ==> a = 2, b = 1
