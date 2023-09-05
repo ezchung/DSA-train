@@ -151,3 +151,15 @@ selectionSort([34,22,10,19,17])
 
 ### Time Complexity
 - O(n^2) because have to compare every element with every other element
+
+# Insertion Sort
+- Similar to selection and bubble, insertion does some things well
+- Builds up the sort by gradually creating a larger left half which is always sorted
+[5,3,4,1,2] => [3,5,4,1,2] => [3,4,5,1,2] 
+- Gradually putting the numbers in the right place. Take the newest and compare to the left value and then continue if a match.
+
+### PsuedoCode
+- Start by picking the second element in the array
+- Compare the second element with the one before it and swap if necessary
+- Continue to the next element and if it is in the incorrect order, iterate through the sorted portion (i.e. the left side) to place the element in the correct place
+- Repeat until the array is sorted
