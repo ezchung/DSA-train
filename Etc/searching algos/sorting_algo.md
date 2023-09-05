@@ -118,3 +118,35 @@ let a = 1, b =2,
         - If no swaps, break
 ### Time Complexity
 - Generally n^2
+
+# Selection sort
+- Similar to bubble sort, but instead of firstplacing large values into sorted position, it places smallest values into sorted position
+[5,3,4,1,2] ==> find min value and move to front [1,3,4,5,2]
+
+### PsuedoCode
+- Store the first element as the smallest value so far
+- Compare this item to the next item in the array until you find a smaller number
+    - If smaller number is found, designate that smaller number to be new min and continue until the end of the array.
+    - If min is not the value (idx) you initially began with, swap the two values
+- Start from the next position from the beginning (shrinking the window)
+
+### Implementation
+function selectionSort(arr){
+    for(let i = 0; i < arr.length, i++){
+        let minIdx = i
+        for(let j = i+1; j < arr.length; j++){
+            if(arr[j] < arr[minIdx]){
+                minIdx = j;
+            }
+        }
+        if(minIdx !== i){
+            [arr[i], arr[minIdx]] = [arr[minIdx], arr[i]];
+        }
+    }
+
+    return arr;
+}
+selectionSort([34,22,10,19,17])
+
+### Time Complexity
+- O(n^2) because have to compare every element with every other element
