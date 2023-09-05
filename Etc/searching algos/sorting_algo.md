@@ -90,7 +90,9 @@ function bubbleSort(arr){
 //checks all the way to end even though we already know the highest was bubbled up
 
 function bubbleSort(arr){
+    let noSwaps;
     for(let i = arr.length; i > 0, i--){
+        noSwaps = true;
         for(let j = 0; j < i-1, j++){
             if(arr[j] > arr[j+1]){
                 //SWAP
@@ -99,10 +101,20 @@ function bubbleSort(arr){
                 arr[j+1] = temp;
                 //or
                 [arr[j],arr[j+1]] = [arr[j+1], arr[j]]
+                noSwaps = false;
             }
         }
+        if(noSwaps) break;
     }
     return arr
 }
 let a = 1, b =2,
 [a,b] = [b,a] ==> a = 2, b = 1
+
+### Optimization
+- when it has already been set in order, what to do instead of continuing the loop
+    > [8,1,2,3,4]
+    > Add line
+        - If no swaps, break
+### Time Complexity
+- Generally n^2
