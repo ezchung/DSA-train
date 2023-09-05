@@ -66,3 +66,10 @@ let swap = (arr,idx1,idx2) => {
     [arr[idx1], arr[idx2]] = [arr[idx2],arr[idx1]];
 }
 
+Bubble Sort PsuedoCode
+- Start looping from with a variable called i at the end of the array towards the beginning
+- Start inner loop with variable j from teh beginning of array until i-1
+- If arr[j] is greater than arr[j+1], swap
+- Return sorted array
+
+Implementation
