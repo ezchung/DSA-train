@@ -91,5 +91,34 @@ Call Stack Imagery
 >> Space: O(n)
 
 ### Quick Sort
+- Like merge sort, exploits the fact that arrays of 0 or 1 element are always sorted 
+- Works by selecting one element (called the "pivot") and finding the index where the pivot should end up in the sorted array
+- Once the pivot is position appropriately, quick sort can be applied to both sides of the pivot
+
+Example
+                        [5,2,1,8,4,7,6,3]
+                        pivot is chosen as 5
+                        [ , , , ,5, , , ]
+                        all the numbers less than 5 moved to the left of the 5 and rest to the right
+                        3,2,1,4     7,6,8
+                        recursively repeat process
+                    choosing 3        choosing 7
+                        1,2     4       6           8
+            choosing 1
+                        2
+    >>During each decomposition, registering which ones are less than pivot (which becomes cemented after that decomposition)
+
+First Step: Pivot Helper Function or Partision 
+- In order to implement merge sort, use to first implement a function responsible arranging elements in an array on either side of a pivot
+- Given an array, this helper function should designate an element as the pivot
+- It should then rearrange elements in the array so that all values less than the pivot are mvoed to the left of the pivot and all values greater than the pivor are moved to the right of the pivot
+- The order fo elements on either side of the pivot don't matter
+- The helper should do this in place, that is, it should not create a new array
+- When complete, the helper should return the index of the pivot
+>> Picking a pivot
+    - The runtime of quick sort depends in part on how one selects the pivot
+    - Ideally the pivot should be chosen so that it ius roughly the median value in the data set you're sorting
+
+
 
 ### Radic Sort
