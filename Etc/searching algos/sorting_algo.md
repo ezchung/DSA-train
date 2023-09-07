@@ -174,14 +174,16 @@ selectionSort([34,22,10,19,17])
         j = j-1
 
 ### Implementation
-function insertionSort(arr){
-    for(let i = 1; i < arr.length; i++){
+function insertionSort(arr) {
+    for (let i = 1; i < arr.length; i++) {
         let currVal = arr[i];
-        for(let j = i-1; j >= 0 && arr[j] > currVal; j--){
-            arr[j+1] = arr[j]
+        let j = i - 1;
+        while (j >= 0 && arr[j] > currVal) {
+            arr[j + 1] = arr[j];
+            j--;
         }
-        arr[j+1] = currVal;
-        console.log(arr)
+        arr[j + 1] = currVal;
+        console.log(arr);
     }
     return arr;
 }
