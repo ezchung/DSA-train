@@ -156,10 +156,33 @@ selectionSort([34,22,10,19,17])
 - Similar to selection and bubble, insertion does some things well
 - Builds up the sort by gradually creating a larger left half which is always sorted
 [5,3,4,1,2] => [3,5,4,1,2] => [3,4,5,1,2] 
-- Gradually putting the numbers in the right place. Take the newest and compare to the left value and then continue if a match.
+- Gradually putting the numbers in the right place. Take the newest and compare to the left value and then continue if condition satisfied.
+
+ Time Complexity: O(N^2)
 
 ### PsuedoCode
 - Start by picking the second element in the array
 - Compare the second element with the one before it and swap if necessary
 - Continue to the next element and if it is in the incorrect order, iterate through the sorted portion (i.e. the left side) to place the element in the correct place
 - Repeat until the array is sorted
+
+> for i : 1 to length Arr - 1
+    j = i
+    while j > 0 and A[j-1] > A[j]
+        swap A[j] and A[j-1]
+        j = j-1
+
+### Implementation
+function insertionSort(arr){
+    for(let i = 1; i < arr.length; i++){
+        let currVal = arr[i];
+        for(let j = i-1; j >= 0 && arr[j] > currVal; j--){
+            arr[j+1] = arr[j]
+        }
+        arr[j+1] = currVal;
+        console.log(arr)
+    }
+    return arr;
+}
+
+[1,2,9,76,4] => [1,2,9,76,4] = [1,2,9,76,4] = [1,2,4,9,76] = [1,2,4,9,76]
