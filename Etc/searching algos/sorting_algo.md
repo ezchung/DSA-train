@@ -159,6 +159,7 @@ selectionSort([34,22,10,19,17])
 - Gradually putting the numbers in the right place. Take the newest and compare to the left value and then continue if condition satisfied.
 
  Time Complexity: O(N^2)
+ Good at online algorithm (numbers getting sorted in along the way)
 
 ### PsuedoCode
 - Start by picking the second element in the array
@@ -186,3 +187,13 @@ function insertionSort(arr){
 }
 
 [1,2,9,76,4] => [1,2,9,76,4] = [1,2,9,76,4] = [1,2,4,9,76] = [1,2,4,9,76]
+
+# Comparing the 3 sorts
+- Algorithm (Quadratic Sorting Algorithms)
+    - Bubble Sort: nice when almost sorted
+    - Insertion Sort: nice when almost sorted 
+    - Selection Sort: doesnt matter that almost sorted since looking at everything for lowest
+        = Nearly Sorted: Bubble and insertion perform better than selection 
+        - Space Complexity: O(1)
+            - Other algorithms take up more space as it sometimes creates a smaller arrays like with mergeSort
+    - Better when inputs are small in comparison to those sorting algos that are coming
