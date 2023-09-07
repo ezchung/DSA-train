@@ -71,7 +71,25 @@ Call Stack Imagery
                 mergeSort([10,24])                              mergeSort([76,73])  
         [10]        merge       [24]                    [76]        merge       [73]
     mergeSort([10])         mergeSort([24])         mergeSort([76])         mergeSort([73])   
-    
+
+- Time Complexity
+>> Best/Avg/Worst Time Complexity: O(n log n)
+    - Unlike bubble sort, where unless data is already sorted, big O is upgraded to linear time
+    - Doesnt matter for mergeSort
+    >> Why n log n
+    [8]     [3]     [5]     [4]     [7]     [6]     [1]     [2]                              
+        [3,8]           [4,5]           [6,7]           [1,2]
+                [3,4,5,8]                       [1,2,6,7]
+                            [1,2,3,4,5,6,7,8]
+        - moving upwards
+            - a decomposition every level. With n as 8, have to split 3 times. With n as 32, have to split 16, 16, then ,8 8 8 8, eight 4s, 16 2s, 32 1s.
+            - log n decompositions
+            - as n grows, the number of times we have to split it up increase log n
+        - O(n) comparisons per decomposition
+            - at every level, there are n number of comparisions. As n grows, the merge function has O(n)
+
+>> Space: O(n)
+
 ### Quick Sort
 
 ### Radic Sort
