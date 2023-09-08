@@ -176,6 +176,22 @@ pivot([4,8,2,1,5,7,6,3])
 [4,8,2,1,5,7,6,3]
 
 <<PsuedoCode>>
+- Call pivot helper on the array
+- When the helper returns the updated pivot index, recursively call the pivot helper on the subarray to the left of that index, and the subarray of the right of the index.
+- Your base case occurs when you consider a subarray with less than 2 elements
 
+<<Implementation>>
+function quickSort(arr,left = 0, right = arr.length-1){
+    <!-- if(arr.slice(left, right+1).length < 2){
+        return;
+    } -->
+    if(left < right){
+        let pivotIndex = pivot(arr,left, right) //returning where the starting element belongs
+        //left
+        quickSort(arr,left,pivotIndex-1) //to not include the pivot index
+        quickSort(arr,pivotIndex+1, right);
+    }
+    return arr; //quickSort of left is waiting on the previous quickSort. Return arr so we can get it back on those waiting
+}
 
 ### Radic Sort
