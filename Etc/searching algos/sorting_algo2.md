@@ -118,6 +118,29 @@ First Step: Pivot Helper Function or Partision
 >> Picking a pivot
     - The runtime of quick sort depends in part on how one selects the pivot
     - Ideally the pivot should be chosen so that it ius roughly the median value in the data set you're sorting
+        - Tough to pick the median number because its not sorted
+    - There are differences with the different pivots
+        - For example, picking the first element. There will be consequences.
+
+let arr = [5,2,1,8,4,7,6,3]
+pivot(arr); //4 which is the index of where 5 belongs
+arr;
+/* May look like any of these but as long as 5 is in the correct position and the ones that are less than 5 are left of 5 and vice versa for greater than 5
+[2,1,4,3,5,8,7,6] same as [4,1,2,3,5,6,8,7]
+In the final sorted array, 5 is in its final position
+*/
+    >> PsuedoCode
+        - Helps to accept three arguments: an array, start index, and an end index. defualts to 0 and array length -1 
+        - Grab the pivot from the start of the array
+        - Store the current pivot index in a variable (this will keep track of where hte pivot should end up)
+        - Loop through the array from the start until the end
+            - If the pivot is greater than the current element, increment the pivot index variable and then swap the current element with the element at the pivot index
+        - Swap the starting element (i.e the pivot) with the pivot index
+        - Return the pivot index
+            - Determined by how many things need to be left of the pivot. The position of pivot is swapped to the location
+            
+<<IMPLEMENTATION>>
+
 
 
 
