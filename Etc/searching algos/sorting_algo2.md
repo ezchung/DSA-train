@@ -182,9 +182,6 @@ pivot([4,8,2,1,5,7,6,3])
 
 <<Implementation>>
 function quickSort(arr,left = 0, right = arr.length-1){
-    <!-- if(arr.slice(left, right+1).length < 2){
-        return;
-    } -->
     if(left < right){
         let pivotIndex = pivot(arr,left, right) //returning where the starting element belongs
         //left
@@ -193,5 +190,13 @@ function quickSort(arr,left = 0, right = arr.length-1){
     }
     return arr; //quickSort of left is waiting on the previous quickSort. Return arr so we can get it back on those waiting
 }
+
+--Time Complexity
+n log n
+- Have to slice log n times. n comparisions per decomposition
+Worst Case
+- if pivot is in the front and already sorted, each decomposition is one item. leads to O(n^2)
+    - or if pivot is the minimum or maximum every time
+- Thats why we choose median or random number instead of first element every single time
 
 ### Radic Sort
