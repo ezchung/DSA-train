@@ -200,3 +200,64 @@ Worst Case
 - Thats why we choose median or random number instead of first element every single time
 
 ### Radic Sort
+- These are all comparison sort algorithms. Between two items ata given time, deciding which one comes first
+- Bubble Sort: O(n^2)
+- Insertion Sort: O(n^2)...
+Can we do better? Yes, but not by doing comparison sorts
+    - The best we can hope for in comparison sorts is O(n log n)
+Solution (but only in certain cases)
+- Integer sorting algorithms
+- Radix Sort is one of these. Not making any direct comparisons. Sorting the data in a different way
+    - Special sorting alogirthm that works on lists of numbers. Binary numbers so it is possible to use other data values just need to be converted to numbers first
+    - Never makes comparisons between elements 
+    - Exploits the fact that information about the size of a number is encoded in the number of digits
+    - More digits means a bigger number
+    How does it work
+        [1556,4,2556,593, 408,4386,902,7,8157,86,9637,29]
+        - Create buckets
+            - go through entire list of numbers and look at rightmost digit and put them into their buckets
+            - 0:    1:      2: [902]     3: [593]     4: [4]      5:       6: [1556,3556,4386,86]      7: [7,8157,9637]      8: [408]      9: [29]
+            [902,593,4,1556,3556,4386,86,7,8157,9637, 408, 29]
+            - now look at the second rightmost digit 
+            - 0: [902,4,7,408]   1:      2: [29]     3: [9637]     4:      5: [1556,3556,8157]      6:      7:       8: [4386,86]      9: [593]
+            - continue and will be sorted. Will continue based on the largest size digit
+                - There was never a comparison between two items directly
+
+<<Helper Methods>>
+Radix Sort Helpers
+- In order to implement radix sort, it's helpful to build a few helper functions first
+- getDigit(num, place) - returns the digit in num at the given place value
+    getDigit(29,1) //2
+    getDigit(12345,0) //5
+    getDigit(12345,5) //0 imagine as 012345
+
+    Implementation for getDigit
+    function getDigit(num,place){
+        return Math.fllor(Math.abs(num) / Math.pow(10, i)) % 10;
+    }
+        - Math.abs is for negative numbers
+        example: (7323,2)
+            - 7323/100 = 73.23 ==> Math.floor(73.23) --> 73 % 10 = 3
+
+- Figuring how many digits we need. Need to know how many times we need to sort everything.
+- digitCount(num) = returns the nubmer fo digits in num
+    - digitCount(1) //1
+    - digitCount(3) //3
+    Implementation
+    function digitCount(num){
+        if(num === 0) return 1;
+        return Math.floor(Math.log10(Math.abs(num))) + 1
+    }
+    - Math.log10(432) ==> 2.63...
+        - number of 10s multiplied within itself needed to reach this number
+
+- mostDigits(nums) - given an array of numbers, returns the number of digits in the largest numbers in the list 
+    - mostDigits([1234, 56,7]) //4
+    Implementation
+    function mostDigits(nums){
+        let maxDigits = 0;
+        for(let i = 0; i < nums.length;i++){
+            maxDigits = Math.max(maxDigits, digitCount(nums[i]));
+        }
+        return maxDigits;
+    }
