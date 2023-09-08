@@ -138,10 +138,44 @@ In the final sorted array, 5 is in its final position
         - Swap the starting element (i.e the pivot) with the pivot index
         - Return the pivot index
             - Determined by how many things need to be left of the pivot. The position of pivot is swapped to the location
-            
+
 <<IMPLEMENTATION>>
+function swap(arr, i, j) {
+  // Use a temporary variable to hold the value at arr[i]
+  const temp = arr[i];
+  
+  // Assign the value at arr[j] to arr[i]
+  arr[i] = arr[j];
+  
+  // Assign the value from the temporary variable to arr[j]
+  arr[j] = temp;
+}
 
+[arr[i], arr[swapIdx]] = [arr[swapIdx], arr[i]];
+- [arr[i], arr[swapIdx]] creates an array with two elements. The first element is arr[i], and the second element is arr[swapIdx].
 
+- = is the assignment operator.
+- [arr[swapIdx], arr[i]] creates another array with two elements, but this time the order is swapped compared to the first array. The first element is arr[swapIdx], and the second element is arr[i].
+- Finally, the outer [...] brackets indicate destructuring assignment. This means that the two elements on the left side of the = operator will be assigned the values from the corresponding positions in the right-side array.
+
+function pivot(arr,start=0, end=arr.length-1){
+    let pivot = arr[start];
+    let swapIdx = start;
+
+    for(let i = start+1; i < arr.length; i++){
+        if(pivot > arr[i]){ //looking at the next
+            swapIdx++;
+            swap(arr,swapIdx,i);
+
+        }
+    }
+    swap(arr,start, swapIdx)
+    return swapIdx;
+}
+pivot([4,8,2,1,5,7,6,3])
+[4,8,2,1,5,7,6,3]
+
+<<PsuedoCode>>
 
 
 ### Radic Sort
