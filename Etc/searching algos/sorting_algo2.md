@@ -261,3 +261,31 @@ Radix Sort Helpers
         }
         return maxDigits;
     }
+
+<<Implementation>>
+#### PsuedoCode
+- function that accepts list of numbers
+    - figure out how many digits the largest number has. use mostDigits and digitCount
+    - loop from k =0 to the largest number of digits
+    - for each iteration of loop
+        - create buckets for each digit(0 to 9)
+        - place each number in the corresponding bucket based on its kth digit
+    - Replace existing array with values in our buckets starting with 0 and going up to 9
+    - return list at the end
+
+function radixSort(nums){
+    let maxDigitCount = mostDigits(nums);
+    for(let k = 0; k < maxDigitCount; k++){
+        let digitBuckets = Array.fromt({length:10}, () => [])
+        for(let i = 0; i < nums.length; i++){
+            let digit = getDigit(nums[i],k);
+            digitBuckets[digit].push(nums[i]);
+        }
+        nums = [].concat(...digitBuckets); //gets that one level down of arrays and passes them as one
+    }
+    returns nums;
+}
+
+<<Big O Complexity>>
+- O(nk) //n is the list size. k is the largest digit size
+Space Complexity : O(n+k)
