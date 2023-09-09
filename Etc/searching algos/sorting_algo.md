@@ -1,41 +1,43 @@
 # Elementary Sorting Algorithms
-Sorting 
-- Process of rearranging the items in a collection so that the items are in some kind of order
-- Examples
-    - Sorting by smallest to largest, alphabetically, movies based on revenue
-- Purpose
-    - Sorting is a common task
-    - Even with built in sort methods, good to know what algo it is using and you can know what it is good at and bad at.
-    - Good critical thinking
-    - Many different ways to sort things and techniques that have their own advantages and disadvantages
 
-Different Sorting Algos
-Selection Sort
-Insertion Sort
-Merge Sort
-Heap Sort
-Radic Sort
-Bubble Sort
-Bogo Sort
-Quick Sort
+## Sorting
+- Process of rearranging the items in a collection so that the items are in some kind of order.
+- Examples:
+    - Sorting from smallest to largest, alphabetically, movies based on revenue.
+- Purpose:
+    - Sorting is a common task.
+    - Even with built-in sort methods, it's good to know what algorithm is being used and understand its strengths and weaknesses.
+    - Develops critical thinking skills.
+    - Many different ways to sort things, each with its own advantages and disadvantages.
 
-Elementary of these sorting algos
+### Different Sorting Algorithms
+- Selection Sort
+- Insertion Sort
+- Merge Sort
+- Heap Sort
+- Radix Sort
+- Bubble Sort
+- Bogo Sort
+- Quick Sort
+
+### Elementary Sorting Algorithms
 - Bubble sort
-- selection sort
-- insertion sort
+- Selection sort
+- Insertion sort
 
-Built In JS Sort method
-- [6,4,15,10].sort()
-    > [10,15,4,6]
-        - becasue based on unicode, everything is converted into a string first and then sorted
+### Built-In JavaScript Sort Method
+- Example: `[6, 4, 15, 10].sort()`
+    - Result: `[10, 15, 4, 6]`
+        - Because based on Unicode, everything is converted into a string first and then sorted.
 
-- Telling JS how to sort
-    > accepts an optiomal comparator function
-    > the comparator looks at pairs of elements (a and b) determines their sort order based on the return value. 
-        - if it returns negative number, a should come before b
-        - if returns positive number, a should come after b
-        - If returns 0, a and b are the same as far as the sort is concerned
+- Telling JS How to Sort
+    - Accepts an optional comparator function.
+    - The comparator looks at pairs of elements (a and b) and determines their sort order based on the return value.
+        - If it returns a negative number, `a` should come before `b`.
+        - If it returns a positive number, `a` should come after `b`.
+        - If it returns 0, `a` and `b` are considered the same as far as the sort is concerned.
 
+```JS
 function numberCompare(num1,num2){
     return num1-num2;
 }
@@ -45,28 +47,42 @@ function compareByLen(str1, str2){
     return str1.length-str2.length
 }
 //sorts by length in ascending order
-Big O = O(NlogN)
+//Big O = O(NlogN)
+```
 
-# BubbleSort
+## BubbleSort
+
+BubbleSort is a simple sorting algorithm that repeatedly steps through the list, 
+compares adjacent elements, and swaps them if they are in the wrong order. The pass 
+through the list is repeated until no swaps are needed, which means the list is sorted.
+- A sorting algorithm where the largest values bubbles up to the top
+
+### How It Works
+- Compare each element to the next one.
+- If the first element is larger than the next one, swap them.
+- Continue comparing and swapping until the largest value "bubbles up" to the end of the list.
+- Repeat the process from the beginning for the remaining unsorted part of the list.
+
 - Compare to next item. If first larger, swap with next. Continue through line
     > Largest value is created and established
     > Largest value bubbled or sinked to the top or the end respectively
 - Repeat process from beginning 
->> [29,10,14,30,37,14,18] ==> After first iteration [10,14,29,30,14,18,37] ==> [10,14,29,14, 18,30,37]
-- A sorting algorithm where the largest values bubbles up to the top
+- [29,10,14,30,37,14,18] ==> After first iteration [10,14,29,30,14,18,37] ==> [10,14,29,14, 18,30,37]
 
-Ways to swap
+### Ways to swap
+```JS
 function swap(arr,idx1, idx2){
     let temp = arr[idx1];
     arr[idx1] = arr[idx2];
     arr[idx2] = temp
 }
-or
+//or
 let swap = (arr,idx1,idx2) => {
     [arr[idx1], arr[idx2]] = [arr[idx2],arr[idx1]];
 }
+```
 
-Bubble Sort PsuedoCode
+### Bubble Sort PsuedoCode
 - Start looping from with a variable called i at the end of the array towards the beginning
 - Start inner loop with variable j from the beginning of array until i-1
 - If arr[j] is greater than arr[j+1], swap
@@ -74,6 +90,7 @@ Bubble Sort PsuedoCode
 
 ### Implementation
 Less optimized version (two nested loops)
+```JS
 function bubbleSort(arr){
     for(let i = 0; i < arr.length, i++){
         for(let j = 0; j < arr.length, j++){
@@ -88,7 +105,7 @@ function bubbleSort(arr){
     return arr
 }
 //checks all the way to end even though we already know the highest was bubbled up
-
+//Optimized Version 
 function bubbleSort(arr){
     let noSwaps;
     for(let i = arr.length; i > 0, i--){
@@ -108,6 +125,8 @@ function bubbleSort(arr){
     }
     return arr
 }
+```
+
 let a = 1, b =2,
 [a,b] = [b,a] ==> a = 2, b = 1
 
@@ -117,11 +136,11 @@ let a = 1, b =2,
     > Add line
         - If no swaps, break
 ### Time Complexity
-- Generally n^2
+- Worst Case: O(n^2)
 
-# Selection sort
+## Selection sort
 - Similar to bubble sort, but instead of firstplacing large values into sorted position, it places smallest values into sorted position
-[5,3,4,1,2] ==> find min value and move to front [1,3,4,5,2]
+- [5,3,4,1,2] ==> find min value and move to front [1,3,4,5,2]
 - Only make one swap at the end of loop. Selection sort is better than bubble sort if want to minimize the number of swaps. Bubble sort requries you to swap over and over. selection iterates and compares a lot but only makes one swap in the end.
 
 ### PsuedoCode
@@ -132,6 +151,7 @@ let a = 1, b =2,
 - Start from the next position from the beginning (shrinking the window)
 
 ### Implementation
+```JS
 function selectionSort(arr){
     for(let i = 0; i < arr.length, i++){
         let minIdx = i
@@ -148,18 +168,19 @@ function selectionSort(arr){
     return arr;
 }
 selectionSort([34,22,10,19,17])
+```
 
 ### Time Complexity
 - O(n^2) because have to compare every element with every other element
 
-# Insertion Sort
+## Insertion Sort
 - Similar to selection and bubble, insertion does some things well
 - Builds up the sort by gradually creating a larger left half which is always sorted
-[5,3,4,1,2] => [3,5,4,1,2] => [3,4,5,1,2] 
+- [5,3,4,1,2] => [3,5,4,1,2] => [3,4,5,1,2] 
 - Gradually putting the numbers in the right place. Take the newest and compare to the left value and then continue if condition satisfied.
 
- Time Complexity: O(N^2)
- Good at online algorithm (numbers getting sorted in along the way)
+### Time Complexity: O(N^2)
+- Good at online algorithm (numbers getting sorted in along the way)
 
 ### PsuedoCode
 - Start by picking the second element in the array
@@ -174,6 +195,7 @@ selectionSort([34,22,10,19,17])
         j = j-1
 
 ### Implementation
+```JS
 function insertionSort(arr) {
     for (let i = 1; i < arr.length; i++) {
         let currVal = arr[i];
@@ -187,10 +209,11 @@ function insertionSort(arr) {
     }
     return arr;
 }
+```
 
 [1,2,9,76,4] => [1,2,9,76,4] = [1,2,9,76,4] = [1,2,4,9,76] = [1,2,4,9,76]
 
-# Comparing the 3 sorts
+## Comparing the 3 Elementary Sorts
 - Algorithm (Quadratic Sorting Algorithms)
     - Bubble Sort: nice when almost sorted
     - Insertion Sort: nice when almost sorted 

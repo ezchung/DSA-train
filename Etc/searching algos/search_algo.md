@@ -50,6 +50,7 @@ PsuedoCode
 - return count
 
 Solution
+```JS
 function naiveSearch(long, short){
     let count = 0;
     for(let i = 0; i < long.length; i++){
@@ -66,5 +67,9 @@ function naiveSearch(long, short){
 }
 
 naiveSearch("lorie loled", "lol")
+```
 
 KMP string searching
+- The basic idea behind KMP’s algorithm is: whenever we detect a mismatch (after some matches), 
+we already know some of the characters in the text of the next window. We take advantage of 
+this information to avoid matching the characters that we know will anyway match. 
