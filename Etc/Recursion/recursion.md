@@ -1,15 +1,21 @@
-What is recursion
-- a process that calls itself
+# What is recursion
 
-How recursive functions work
-- Invoke the same function with a different input until you reach your base case
+Recursion is a programming technique where a function calls itself to solve a problem.
 
-Gameplan
-- base case. Or something that is at the end of the line
-- different input. the recursive call and each time you are calling it with a different piece of data
+## How Recursive Functions Work
 
+1. **Invoke the Same Function**: Recursive functions invoke themselves with different inputs until they reach a base case.
+
+### Gameplan for Recursion
+
+- **Base Case**: A condition that marks the end of the recursion.
+- **Different Input**: Invoking the recursive function with a different piece of data each time.
+
+## Countdown Example
+
+```javascript
 function countDown(num){
-    if(num <=0 ){
+    if(num <= 0){
         console.log("All done");
         return;
     }
@@ -17,27 +23,33 @@ function countDown(num){
     num--;
     countDown(num);
 }
-- Gameplan
-    - base case. End of the line is when num is 0
-    - every recursive case will get the decremented num
-    - Return keyword is the last action
+```
 
+- **Gameplan**:
+  - Base case: The end of the line is when `num` is 0.
+  - Recursive case: In every recursive call, we decrement `num`.
+  - The `return` keyword is the last action before returning.
+
+```javascript  
 function sumRange(num){
     if(num === 1) return 1;
     return num + sumRange(num-1)
 }
-- Gameplan
-    - base case: when num is 1
-    - diff input: num - 1
+```
+
+- **Gameplan**:
+    - Base case: when num is 1
+    - Diff Input: num - 1
     - rather than ending the loop, base case ends its own function
         - two returns
-- Display
+- **Display**:
     sumRange(3)
         return (3) + sumRange(2)
                    +  2         + sumRange(1)
                                     1
 
-NonRecursive
+##### NonRecursive
+```javascript
 function factorial(num){
     let total = 1;
     for(let i = num; i > 0; i--){
@@ -50,9 +62,11 @@ function factorial(num, total = 1){
     if(num === 1) return total;
     return num * factorial(num-1, total);
 }
+```
 
-Helper Method Recursion
+### Helper Method Recursion
 - purpose to have a variable that you can manipulate without having to pass into recurse function.
+```JS
 function outer(input){
     let outerScopedVariable = []
 
@@ -65,6 +79,7 @@ function outer(input){
 
     return outerScopedVariable
 }
+```
 
 **Part of Graphs Section
 depthFirstRecursive(start){
@@ -76,6 +91,7 @@ depthFirstRecursive(start){
 
 Pure Recursion
 
+```JS
 function collectOddValues(arr){
     let newArr = [];
     if(arr.length=== 0) return newArr;
@@ -84,6 +100,7 @@ function collectOddValues(arr){
     newArr = newArr.concat(collectOddValues(arr.slice(1))); //even though every time loop runs, newArr is created. we are concatenating
     return newArr;
 }
+```
 
 collectOddValues([1,2,3,4,5]);
 [1].concat(collectOddValues[2,3,4,5]);
