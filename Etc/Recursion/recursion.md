@@ -81,15 +81,17 @@ function outer(input){
 }
 ```
 
-**Part of Graphs Section
+### Part of Graphs Section
+```JS
 depthFirstRecursive(start){
     result = []
     visited = {}
     ...
     dfs(vertex)
 }
+```
 
-Pure Recursion
+## Pure Recursion
 
 ```JS
 function collectOddValues(arr){
