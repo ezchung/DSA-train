@@ -141,6 +141,21 @@ class SinglyLinkedList{
         //     counter++;
         // }
     }
+
+    //Changing the value of a node based on it's position in the linked list
+    //PseudoCode
+    //function takes value and idx
+    //use get function to find the specific node which returns to us the foudn node
+    //if node not found, return false,
+    //if found, set the value of that node to be the vlaue passed to the function and return true
+    set(idx,val){
+        let node = this.get(idx);
+        if(node){
+            node.val = val;
+            return true;
+        }
+        return false;
+    }
 }
 
 let list = new SinglyLinkedList()
