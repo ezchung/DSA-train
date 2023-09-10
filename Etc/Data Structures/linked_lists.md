@@ -90,7 +90,56 @@ class SinglyLinkedList{
     //decrement the length by 1
     //return the value of the node removed
     shift(){
+        if(!this.head) return undefined;
+        let currHead = this.head;
+        this.head = currHead.next;
+        this.length--;
+        if(this.length === 0){
+            this.tail = null //if head did not have one, then the next is already null
+        }
+        return currHead;
+    }
 
+    //Adding a new node to the beginning of the LL
+    //PsuedoCode
+    //Create new node using the value passed to the function
+    //If there is no head property on list, set the head and tail to be the newly created node
+    //otherwise set the newly created node's next property to be the current head property on the list
+    //set the head property on the lsit to be that newly created node
+    //increment the length of the list by 1
+    //return LL
+    unshift(val){
+        let newNode = new Node(val);
+        if(!this.head){
+            this.head = newNode;
+            this.tail = this.head;
+        } else {
+            newNode.next = this.head;
+            this.head = newNode;
+        }
+        this.length++;
+        return this;
+    }
+
+    //Retrieving a node by its position in the linked list
+    //get(0) get the first index. traverse
+    //PseudoCode
+    //function takes index
+    //if index is less than zero or greater than or equal to length of list, return null
+    //loop through the list until you reach the index and return the node at that specific index
+    get(idx){
+        if(idx < 0 || idx >= this.length) return null;
+        let curr = this.head;
+        for(let i = 0; i < idx; i++){ //want to stop one node before the desired index, so you need to iterate idx times, not idx + 1 times.
+            curr = curr.next;
+        }
+        return curr;
+        //or
+        //let counter = 0;
+        // while(counter !== idx){
+        //     curr = curr.next;
+        //     counter++;
+        // }
     }
 }
 
