@@ -185,9 +185,70 @@ class SinglyLinkedList{
         this.length++;
         return true;
     }
+
+    //Removing a node from the Linked List at a specific position
+    //PseduoCode
+    //If idx is less than zero or greater than the length, return undefined
+    //if the idx is the same as the length-1, pop
+    //if idx is 0, shift
+    //Otherwise, use the get method, access the node at the index -1
+    //set the next property on that node to be the next of the next node
+    //decrement the length
+    //return value of the node removed
+    remove(idx){
+        if(idx < 0 || idx > this.length) return undefined;
+        if(idx === 0) return this.shift();
+        if(idx === this.length-1) return this.pop();
+        let prevNode = this.get(idx-1);
+        let removed = prevNode.next;
+        prevNode.next = removed.next;
+        this.length--;
+        return removed;
+    }
+
+    //Reverse
+    //Reversing the linked list in place
+    //PsuedoCode
+    //Create a variable called next / prev
+    //Create variable called node and intialize it to the start of the head
+    //loop through list
+    //set next to be the next property on whatever node is
+    //set the next property on the node to be whatever prev is
+    //set prev to be the value of the node variable
+    //set the node variable to be the value of the next variable
+    reverse(){
+        let node = this.head;
+        this.head = this.tail;
+        this.tail = node;
+        let prev = null;
+        let next; 
+        for(let i = 0; i < this.length; i++){
+            next = node.next;
+            node.next = prev;
+            prev = node;
+            node = next;
+        }
+        return this;
+    }
+    print(){
+        let arr = [];
+        let curr = this.head;
+        while(curr){
+            arr.push(curr.val);
+            curr = curr.next;
+        }
+        console.log(arr;)
+    }
 }
 
 let list = new SinglyLinkedList()
 list.push("Hello");
 list.push("bye");
 ```
+
+### Big O of Singly Linked Lists
+Common Operations
+- Insertion : O(1)
+- Removal : depends O(1) or O(N) based on where we are removing from. If removing from front, O(1) (shift)
+- Searching : O(n)
+- Access : O(n)
