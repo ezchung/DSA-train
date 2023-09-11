@@ -252,3 +252,8 @@ Common Operations
 - Removal : depends O(1) or O(N) based on where we are removing from. If removing from front, O(1) (shift)
 - Searching : O(n)
 - Access : O(n)
+
+- If concerned about insertion time, may be better if random access is less neccessary
+- Singly Linked Lists are an excellent alternative to arrays when insertion and deltion at the beginning are frequently required.
+- Arrays cotnain a built in index whereas Linked Lists do not
+- The idea of list data structure that consists of nodes is the foundation for other data structures like Stacks and Queues
