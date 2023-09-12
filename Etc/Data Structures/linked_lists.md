@@ -418,6 +418,44 @@ class DoublyLinkedList{
         }
     }
 
-    
+    //Set: Replacing the value of a node to the index a doubly linked list
+    //PseudoCode
+    //Create a variable which is the result of the get method at the index passed to the function
+        //If the get method returns a valid node, set the value of that node to be the value passed to the function
+    //otherwise, return false
+    set(idx, value){
+        let foundNode = this.get(idx);
+        if(foundNode !== null){
+            foundNode.val = value;
+            return true;
+        }
+        return false;
+    }
+
+    //Insert: add node by a certain position
+    //PseudoCode
+    //If idx is less than 0 or greater than to the length, return false;
+    //if idx is 0, unshift
+    //if idx is the same as the length, push
+    //use the get method to access the index -1
+    //set the next and prev properties of the neighboring nodes and itself to link together
+    //increment length
+    //return true
+    insert(idx, value){
+        if(idx < 0 || idx > this.length) return false;
+        if(idx === 0) return !!this.unshift(value);
+        if(idx === this.length) return !!this.push(val); //change to true when it is returned a valid node
+        let newNode = new Node(val);
+        let prevNode = this.get(idx-1);
+        let nextNode = prevNode.next;
+
+        prevNode.next = newNode;
+        newNode.prev = prevNode;
+        
+        newNode.next = nextNode;
+        nextNode.prev = newNode;
+        this.length++;
+        return true;
+    }
 }
 ```
