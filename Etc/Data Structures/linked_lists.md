@@ -334,5 +334,62 @@ class DoublyLinkedList{
         this.length--;
         return oldTail;
     }
+
+    //Shift: Remove node from beginning of the Doubly LL
+    //PsuedoCode
+    //if length is 0, return undefined
+    //store current head property in a variable 
+    //if length is one
+        //set head and tail to null
+    //Update the head to be the next of the old head
+    //set the head's prev property to null
+    //set the old head's next to null
+    //decrement the length
+    //return the old head
+    shift(){
+        if(this.length === 0) return undefined;
+        let oldHead = this.head
+        if(this.length === 1){
+            this.head = null;
+            this.tail = null;
+        }else{
+            this.head = oldHead.next;
+            this.head.prev = null;
+            oldHead.next = null;
+        }
+        this.length--;
+        return oldHead;
+    }
+
+    //Unshift: Adding node to beginning
+    //PsuedoCode
+    //function with val passed in
+    //if length is 0
+        //set head to be new node
+        //set tail to be new node
+    //else
+        //set prev on the head of the list to be the new node
+        //set next property on the new node to be the former head node
+        //update instance's head to be the new node
+    //Increment length
+    //Return list
+    unshift(val){
+        let newNode = new Node(val);
+        if(this.length === 0){
+            this.head === newNode;
+            this.tail === newNode;
+        }else{
+            this.head.prev = newNode;
+            newNode.next = this.head;
+            this.head = newNode;
+        }
+        this.length++;
+        return this;
+    }
+
+    //Get: Access node in a doubly linked list by position. 
+        //(Unique from singly LL) --> 
+    //PsuedoCode
+    //
 }
 ```
