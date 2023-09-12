@@ -257,3 +257,28 @@ Common Operations
 - Singly Linked Lists are an excellent alternative to arrays when insertion and deltion at the beginning are frequently required.
 - Arrays cotnain a built in index whereas Linked Lists do not
 - The idea of list data structure that consists of nodes is the foundation for other data structures like Stacks and Queues
+
+# Doubly Linked Lists
+Construct a doubly linked list
+Almost identical to Singly Linked lists, except every node has another pointer, to the previous node
+when popping off the last item, in Singly, have iterate through and then pop off. 
+Comparisons with Singly Linked Lists
+- More memory === more flexibility
+
+```JS
+class Node{
+    constructor(val){
+        this.val = val;
+        this.next = null;
+        this.prev = null;
+    }
+}
+
+class DoublyLinkedList{
+    constructor(){
+        this.head = null;
+        this.tail = null;
+        this.length = 0;
+    }
+}
+```
