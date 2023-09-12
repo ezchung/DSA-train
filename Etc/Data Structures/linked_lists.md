@@ -390,6 +390,34 @@ class DoublyLinkedList{
     //Get: Access node in a doubly linked list by position. 
         //(Unique from singly LL) --> 
     //PsuedoCode
-    //
+    //If the index is less than 0 or greater than or equal to length, return null
+    //If idx is less than or equal to half the length of the list
+        //iterate through the list from head and loop towards the middle
+        //return the node once it is found
+    //If idx is greater than half the length of the list
+        //iterate through the list from tail towards the middle
+        //return the node once it is found
+    get(idx){
+        if(idx < 0 || idx >= this.length) return null;
+        if(idx <= Math.floor(this.length/2)){
+            let count = 0;
+            let curr = this.head;
+            while(count != idx){
+                curr = curr.next;
+                count++;
+            }
+            return current;
+        }else{
+            let count = this.length - 1;
+            let current = this.tail;
+            while(count !== idx){
+                current = current.prev;
+                count--;
+            }
+            return current;
+        }
+    }
+
+    
 }
 ```
