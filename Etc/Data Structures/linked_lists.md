@@ -280,5 +280,34 @@ class DoublyLinkedList{
         this.tail = null;
         this.length = 0;
     }
+
+    //PUSH
+    //Adding a node to the end of the Doubly Linked List
+    //PseudoCode
+    //Create new node with the value passed to the function
+    //if the head property is null set the head and tail to be the new node
+    //if not, set the next property on the tail to be that node 
+    //set the previous property of the new node to be the former tail
+    //set the tail as new node
+    //increment length
+    //return doubly linked list
+    push(val){
+        let newNode = new Node(val);
+        if(!this.head){
+            this.head = newNode;
+            this.tail = newNode;
+        }else{
+            let prevTail = this.tail;
+            prevTail.next = newNode;
+            newNode.prev = prevTail;
+            this.tail = newNode;
+
+            this.tail.next = newNode;
+            newNode.prev = this.tail;
+            this.tail = newNode;
+        }
+        this.length++;
+        return this;
+    }
 }
 ```
