@@ -309,5 +309,30 @@ class DoublyLinkedList{
         this.length++;
         return this;
     }
+
+    //POP
+    //Removing node from the end of the Doubly Linked List
+    //PseudoCode
+    //if there is no head, return undefined
+    //store the current tail in a variable to return later
+    //if the length is 1, set the head and tail to be null
+    //update the tail to be the previous node
+    //set the newTail's next to null
+    //return the value of the node removed
+    //**Need to account for both pathways
+    pop(){
+        if(!this.head) return undefined;
+        let oldTail = this.tail;
+        if(this.length === 1){
+            this.head === null;
+            this.tail === null;
+        }else{
+            this.tail = oldTail.prev;
+            this.tail.next = null;
+            oldTail.prev = null;
+        }
+        this.length--;
+        return oldTail;
+    }
 }
 ```
