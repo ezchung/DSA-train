@@ -457,5 +457,43 @@ class DoublyLinkedList{
         this.length++;
         return true;
     }
+
+    //Remove: Remove node by a certain position
+    //PseudoCode
+    //If idx is less than 0 or >= length, return undefined
+    //If idx is 0, shift
+    //if idx is same as length-1, pop
+    //use the get method to retrieve the item to be removed
+    //update the next and prev properties to remove the found ndoe from the list
+    //set next and prev to null on the found node
+    //decrement the length
+    //return the removed node
+    remove(idx){
+        if(idx < 0 || idx > this.length) return false;
+        if(idx === 0) return this.shift(value);
+        if(idx === this.length) return this.pop(val); //change to true when it is returned a valid node
+        let removedNode = this.get(idx);
+        let beforeNode = removedNoed.prev;
+        let afterNode = removedNode.next;
+        beforeNode.next = afterNode;
+        afterNode.prev = beforeNode;
+        removedNode.next = null;
+        removedNode.prev = null;
+        this.length--;
+        return removedNode;
+    }
+
 }
 ```
+
+### Big O Notation for Doubly Linked List
+- Insertion, Removal == constant time O(1) which is different from singly LL
+- Searching, Access == O(N)
+    - Technically searching is O(n/2) but still O(N)
+
+### Recap
+- Doubly LL are almost identical to Singly LL except there is an additional pointer to previous nodes.
+    - Like pages of a book
+- Better than Singly for finding nodes and can be done in half the time.
+    - However, do take up more memory considering the extra pointer
+    - Comes with mroe memory
