@@ -136,3 +136,88 @@ return the value of the node removed
 - Stacks are used to handle function invoations (the call stack) and etc
 - Not a built in data structure in JS
 - making it as a class is the preferred way to use a stack, especially when using large amounts of data and only function is to push or pop. Arrays as shown above is the same idea as [here](#array-implementations)
+
+# Queues
+### What is a queue
+- a FIFO data structure
+
+### Use Cases
+- Background tasks
+- Uploading resources / Printing & Task Processing
+
+### Implementation
+- The important methods are dequeue and enqueue
+#### Array Implementation
+```JS
+let q = [];
+q.push("one") //1
+q //["one"]
+q.shift() //"one"
+//or
+q.unshift("one") //1
+q.pop() //"one"
+//Unlike stacks, needs to be reindexed at one point with array implementations
+```
+
+#### Class Implementation
+```JS
+class Node {
+    constructor(val){
+        this.val = val;
+        this.next = null;
+    }
+}
+
+class Queue {
+    constructor(){
+        this.first = null;
+        this.last = null;
+        this.size = 0;
+    }
+
+    /*
+    PsuedoCode
+    function takes a value
+        Create new node using the value passed to the function
+        if there are no nodes in the queue, set this node to be the first and last of queue
+        otherwise, set the next property on the current last to be that new node and then set the last property of the queue to be the new node
+    */
+   enqueue(val){
+    let newNode = new Node(val){
+
+    }
+    if(!this.first){
+        this.first = newNode;
+        this.last = newNode;
+    } else{
+        this.last.next = newNode; //old last nodes' next property is reassigned
+        this.last = newNode
+    }
+    return ++this.size;
+
+   /*
+   If no first property, return null
+   store the first property in a variable  
+   check if the frist is the same as the last. if so, set te first and last to be null
+   if more than 1 node, set the first property to be the next property of first
+   decrement by size by 1
+   return the value of the node dequeud 
+   */
+   dequeue(){
+    if(!this.first) return null;
+    let temp = this.first;
+    if(this.first === this.last){
+        this.last = null;
+    }
+    this.first = this.first.next //going onto next node 
+    this.size--;
+    return temp.val;
+   }
+}
+```
+
+### Big O of Queues
+- Insertion  == O(1)
+- Removal == O(1)
+- Searchung = O(N) //Generally not used for queues
+- Accessing == O(N)
