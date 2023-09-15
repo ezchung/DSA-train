@@ -124,3 +124,15 @@ return the value of the node removed
 }
 ```
 - Removing from the beginning because we want to keep push and pop constant time with a singly LL
+
+### Big O of Stacks
+- Insertion == O(1)
+- Removal == O(1)
+- Searching == O(N)
+- Access == O(N)
+
+### Recap
+- Stacks are a LIFO data structure
+- Stacks are used to handle function invoations (the call stack) and etc
+- Not a built in data structure in JS
+- making it as a class is the preferred way to use a stack, especially when using large amounts of data and only function is to push or pop. Arrays as shown above is the same idea as [here](#array-implementations)
