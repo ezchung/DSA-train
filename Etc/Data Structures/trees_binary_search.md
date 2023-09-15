@@ -24,12 +24,25 @@
     - what the keywords in programming work
     - Way of if oyu were writing code to take in other code and to parse through that code, this will help you out
 - AI
-    - mini max tree
-    - Given state of board game, find best possible moves
+    - mini max tree (decision tree)
+        - Given state of board game, find best possible moves
+- Folders in Operating Systemg
 
 ### Trees vs Lists
 - Lists ==> linear
 - Trees ==> nonlinear
     - many different paths you can take becuase there are potentially many other chidlren
+
 ### Differences between trees, binary trees, and binary search trees (BSTs)
+#### Trees
+#### Binary Trees
+- Each node can have at most two children
+#### Binary Search Trees
+- a specific type of binary tree meant to search
+- Sorted in a particular way
+    - Every parent node has at most two children
+    - Every node to the left of a parent node is always less than the parent
+    - Every node to the right of a parent node is always greater than the parent
+- used to store data that can be compared / sortable. Way for us to order it
+
 ### Implementation
