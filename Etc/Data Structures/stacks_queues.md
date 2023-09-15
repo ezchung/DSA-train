@@ -37,4 +37,90 @@ stack.shift() //cloned out wrinkle
             - unshift / shift will reassign all remaining variables to new indices
 
 ### Stack Creation
+```JS
+class Node {
+    constructor(val){
+        this.val = val;
+        this.next = null;
+    }
+}
 
+class Stack {
+    constructor(){
+        this.first= null;
+        this.last = null;
+        this.size = 0;
+    }
+}
+```
+#### Linked List Implementation
+- In a stack, push and pop are to be constant time
+    - but in a singly linked list, this is not true as we have to loop through the entire loop so instead use shift and unshift
+
+```JS
+class Stack{
+    constructor(){
+        this.first = null;
+        this.last = null;
+        this.size = 0;
+    }
+
+/*
+PsuedoCode
+- The function accepts a value
+- Create a new node with that value
+- If there are no nodes in the stack, set the first and last property to be the newly created node 
+- If there is at least one node, create a variable that stores the current first property on the stack
+- Reset the first property to be the newly created node
+- Set the next property on the node to be the previously created variable
+- Increment size of stack
+*/
+    push(val){
+        let newNode = new Node(val);
+        if(!this.first){
+            this.first = newNode;
+            this.last = newNode;
+        }else{
+            let temp = this.first;
+            this.first = newNode;
+            this.first.next = temp;
+        }
+        return this.size++;
+        /*
+        ++x (pre-increment) means "increment the variable; the value of the expression is the final value"
+        x++ (post-increment) means "remember the original value, then increment the variable; the value of the expression is the original value"
+
+        Means the same thing here
+        x++;
+        ++x;
+
+        x = 0;
+        y = array[x++]; // This will get array[0]
+
+        x = 0;
+        y = array[++x]; // This will get array[1]
+        */
+    }
+
+/*
+PsuedoCode
+If no nodes in stack, return null
+create temp variable to store first property on stack
+if there is only 1 node, set first and last property to null
+if there is more than 1 node, set the first property to be the next property on the current first
+decrement the size by 1
+return the value of the node removed
+*/
+    pop(){
+        if(!this.first) return null;
+        let temp = this.first;
+        if(this.first === this.last){ //if it is the last thing in the stack
+            this.last = null;
+        }
+        this.first = this.first.next; //move the first to the next variable
+        this.size--;
+        return temp.val;
+    }
+}
+```
+- Removing from the beginning because we want to keep push and pop constant time with a singly LL
