@@ -146,3 +146,25 @@ let heap = new MaxBinaryHeap();
 heap.insert(55);
 //[41,39,33,18,27,12]
 ```
+
+## Priority Queue
+- Uses binary heaps
+    - a heap that is standarized with the rules of a binary tree
+    - a "heap" is a broader concept encompassing various types of heap data structures, 
+    while a "binary heap" is a specific type of heap implemented as a binary tree with specific properties. 
+    The most common types of binary heaps are max-heaps and min-heaps, used in various applications for efficient data processing and sorting.
+### What is this?
+- A data structure where each element has a priorty. Elements with hgiher priorities are served before elements with lower priorities
+- A naive version
+    - Would be to iterate over the entire thing to find the highest priority element
+- A idea is like a queue, but the format is a binary heap
+### Use Cases
+
+### Implementation
+```JS
+class PriorityQueue{
+    constructor(){
+        this.values = [];
+    }
+}
+```
