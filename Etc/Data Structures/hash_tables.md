@@ -17,6 +17,10 @@ Imagine we want to store some colors
     - But this is not readable 
     - Would be nice if instead of using indices to access the colors, we could use more human readable keys
         - colors["cyan"] easier than colors[2]
+- The Hash Part
+    - In order to look up values by key, we need a way to convert keys into valid array indices
+    - a function that performs this task is called a hash function
+- Hashing Conceptually
 ### Hashing Algorithm
 - What makes a good hashing algorithm
 - Colloisions in a hash table
