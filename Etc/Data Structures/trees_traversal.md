@@ -121,3 +121,27 @@ DFSInOrder(){
 ```
 
 ## When to use BFS or DFS
+BFS vs DFS
+- Tree that is fully fleshed out. BFS has a queue of the nodes that we have yet to visit
+    - Queue grows
+        - have to store a ton of data in queue
+- On DFS, only keeping track of the depth
+    - Same amount of work, but the amount of space that we work with
+- Time complexity is the same. Each node is visited once
+    - Space depends on the tree. With wide tree, BFS would take more space. With deep tree, DF would use more space
+
+DFS
+- In Order
+    - When you use this on a BST, lowest to highest. Set of all the nodes that is in order
+- Post Order
+- Pre Order
+    - Can be used to export a tree structure so that it is easily reconstructed or copied.
+        - Flatten out and iterate through list as it is given to you so that it is readable
+        - Automatically know which one is root
+
+## Recap
+- Trees are non-linear data structures that contain a root and child nodes
+- Binary Tree can have values of any type, but at most two children for each parent
+- BST are more specific version of binary trees where every node to left of the parent is less than its value and every node to the right is greater
+- We can search through Trees using BFS and DFS
+
