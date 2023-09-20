@@ -76,10 +76,70 @@ class MaxBinaryHeap{
    /*
    REMOVING From a heap
    - Remove the root
-   - Replace with teh most recently added
+   - Replace with the most recently added
    - Adjust (sink down)
-   
+   >>Most of the time, will be removing the root which is the max
+   >>Sink Down?
+        The procedure for deleting the root from the heap (effectvely extracting the maximum element in a max-heap or the minimum element in a min-heap) and restoring the properties is a called down-heap (aka bubble-down, percolate-down, sift-down, trickle down, heapify-down, cascade-down, and extract-min/max) 
+    >>Swap 
+        Take the root and swap with the last number in the values array. Then shift down from the top or the new root. 
+        Goes toward the direction of the larger child
+    PsuedoCode (removing or extractMax)
+    - Swap the first value in the values property with the last one
+    - Pop from teh values property so you can return the value at the end
+    - Have the new root "sink down" to the correct spot
+        - Your parent idx starts at 0 (the root)
+        - Find the index of the left child: 2 * idx + 1 (make sure its not out of bounds)
+        - Find the idx of the right child: 2* index + 2 (make sure its not out of bounds)
+        - If the left or right child is greater than the element...swap. If both left and right are larger, swap with the largest child
+        - The child indx you swapped to now becomes the new parent index
+        - Keep looping and swapping until neither child is larger than the element
+        - Return the old root
    */
+  remove(){
+      
+    const max = this.values[0];
+    const end = this.values.pop();
+    //Edge case (when one element left, without this "if condition" code, reinserting the end)
+    if(this.values.length > 0){
+        this.values[0] = end;
+        //trickle down
+        this.sinkDown();
+    }
+    return max;
+  }
+  sinkDown(){
+    let idx = 0;
+    const len = this.values.length;
+    const element = this.values[0];
+    while(true){
+        let leftChildIdx = 2 * idx + 1;
+        let rightChildIdx = 2 * idx + 2;
+        let leftChild, rightChild;
+        let swap = null;
+
+        if(leftChildIdx < len) {
+            leftChild = this.values[leftChildIdx];
+            if(leftChild > element){
+                swap = leftChildIdx;
+            }
+        }
+        if(rightChildIdx < len) {
+            rightChild = this.values[rightChildIdx];
+            if(
+                (swap === null && rightChild > element) || 
+                (swap !== null && rightChild > leftChild)
+            ){
+                swap = rightChildIdx;
+            }
+        }
+        if(swap === null) break;
+        this.values[idx] = this.values[swap];
+        this.values[swap] = element;
+        idx = swap;
+    }
+  }
+  //For min, would be more changes with the comparisons of greater than's
 }
 
 let heap = new MaxBinaryHeap();
