@@ -201,4 +201,44 @@ DFSIterative(startVertex){
 }
 ```
 **Order looks a little different because we are popping off the stack so rather than taking from the front of the adjacencyList values, taking from the back
+
+#### BFS
+##### Implementation
+PsuedoCode
+- function takes a starting vertex
+- Create equeue and place the starting vertex in it
+- Create an array to store the nodes visited
+- Create an object to store nodes visited
+- Mark the starting vertex as visited
+- Loop as long as there is anything in the queue
+- Remove the first vertex from the queue and push it into the array that stores nodes visited
+- Loop over each vertex in teh adjacency list for the vertex you are visiting
+- If it is not inside the object aht stores nodes visited, mark it as vistied and enqueue that vertex
+- once you have finished looping, return the array of visited nodes
+```JS
+BFS(startVertex){
+    const queue = [startVertex];
+    let result = [];
+    let visited = {};
+    let currentVertex;
+    visited[startVertex] = true;
+
+    while(queue.length){
+        currentVertex = queue.shift();
+        result.push(currentVertex);
+
+        let neighbors = this.adjacencyList[currentVertex]; //this.adjacencyList[currentVertex].slice().reverse()
+        for(let neighborIdx in neighbors){
+            let neighbor = neighbors[neighborIdx];
+            if(!visited[neighbor]){
+                visited[neighbor] = true;
+                queue.push(neighbor);
+            }
+        };
+    };
+    return result;
+}
+```
+
+
 ### Compare and contrast graph traversal algorithms
