@@ -329,3 +329,145 @@ graph.Dijkstra("A","E");
 ```
 
 ### Upgrading Dijkstra's using a binary heap priority queue
+```JS
+class Node{
+    constructor(val, priority){
+        this.val = val;
+        this.priority = priority;
+    }
+}
+
+class PriorityQueue{
+    constructor(){
+        this.values = [];
+    }
+
+    enqueue(val, priority){
+        let newNode = new Node(val, priority);
+        this.values.push(newNode);
+        this.bubbleUp();
+    }
+    bubbleUp(){
+        let idx = this.values.length - 1;
+        const element = this.values[idx];
+        while(idx > 0){
+            let parentIdx = Math.floor((idx-1)/2);
+            let parent = this.values[parentIdx];
+            if(element.priority >= parent.priority) break;
+            this.values[parentIdx] = element;
+            this.values[idx] = parent;
+            idx = parentIdx;
+        }
+    }
+
+    dequeue(){
+        const min = this.values[0];
+        const end = this.values.pop();
+        //Edge case (when one element left, without this "if condition" code, reinserting the end)
+        if(this.values.length > 0){
+            this.values[0] = end;
+            //trickle down
+            this.sinkDown();
+    }
+    return min;
+  }
+  sinkDown(){
+    let idx = 0;
+    const len = this.values.length;
+    const element = this.values[0];
+    while(true){
+        let leftChildIdx = 2 * idx + 1;
+        let rightChildIdx = 2 * idx + 2;
+        let leftChild, rightChild;
+        let swap = null;
+
+        if(leftChildIdx < len) {
+            leftChild = this.values[leftChildIdx];
+            if(leftChild.priority < element.priority){
+                swap = leftChildIdx;
+            }
+        }
+        if(rightChildIdx < len) {
+            rightChild = this.values[rightChildIdx];
+            if(
+                (swap === null && rightChild.priority < element.priority) || 
+                (swap !== null && rightChild.priority < leftChild.priority)
+            ){
+                swap = rightChildIdx;
+            }
+        }
+        if(swap === null) break;
+        this.values[idx] = this.values[swap];
+        this.values[swap] = element;
+        idx = swap;
+    }
+  }
+}
+
+class WeightedGraph{
+    constructor(){
+        this.adjacencyList = {}
+    }
+    addVertex(vertex){
+        if(!this.adjacencyList[vertex]) this.adjacencyList[vertex] = []
+    }
+
+    addEdge(vertex1, vertex2, weight){
+        this.adjacencyList[vertex1].push({node:vertex2, weight});
+        this.adjacencyList[vertex2].push({node:vertex1, weight});
+    }
+    
+    Dijkstra(start,finish){
+        const nodes = new PriorityQueue();
+        const distances = {};
+        const previous = {};
+        let path = []; //to be returned at the end
+        let smallest;
+        //build up initial state
+        //looping over adjacencyList
+        for(let vertex in this.adjacencyList){
+            if(vertex === start){
+                distances[vertex] = 0;
+                nodes.enqueue(vertex,0); //since this is where we begin
+            } else {
+                distances[vertex] = Infinity;
+                nodes.enqueue(vertex, Infinity); //into priority queue
+            }
+            previous[vertex] = null;
+        }
+
+        //as long as there is something to visit
+        while(nodes.values.length){
+            smallest = nodes.dequeue().val; //{node: B, priority: Infinity}. Getting the val
+            if(smallest === finish){
+                //done
+                //build path to return
+                while(previous[smallest]){
+                    path.push(smallest);
+                    smallest = previous[smallest];
+                }
+                break;
+            }
+            if(smallest || distances[smallest] !== Infinity){
+                for(let neighborIdx in this.adjacencyList[smallest]){
+                    //find neighboring node
+                    let nextNode = this.adjacencyList[smallest][neighborIdx] //{node:F, weight:5}
+                    //this.adjacencyList[smallest] ==> [{node:F, weight: 5},...]
+                    //calculate new distance
+                    let candidate = distances[smallest] + nextNode.weight;
+                    let nextNeighbor = nextNode.node
+                    if(candidate < distances[nextNeighbor]){
+                        //updating new smallest distance to neighbor
+                        distances[nextNeighbor] = candidate;
+                        //updating previous - How we got to neighbor
+                        previous[nextNeighbor] = smallest;
+                        //enqueue in priority queue with new priority
+                        nodes.enqueue(nextNeighbor, candidate);
+                    }
+                }
+            }
+        }
+        return path.concat(smallest).reverse();
+    }
+}
+```
