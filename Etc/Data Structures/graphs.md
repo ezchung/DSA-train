@@ -98,6 +98,107 @@ class Graph{
     }
 }
 ```
-### Traverse using BFS and DFS
 
+# Graph Traversal
+- Visiting / Updating / Checking each vertex in a graph
+- Neighbors 
+### Uses
+- Peer to Peer networking
+- Web crawlers
+- Finding closest matches/recommendations
+- Shortest path problems
+    - GPS Navigation
+    - Solving mazes
+    - AI
+
+### Traverse using BFS and DFS
+#### DFS
+- Explore as far as possible 
+##### DFS Recursively
+PseudoCode
+DFS(vertex) recursive
+    If vertex is empty
+        return 
+    add vertex to results list
+    mark vertex as visited
+    for each neighbor in vertex's neighbors
+        if neighbor is not visited:
+            recursively call on neighbors
+In Depth PseudoCode
+- Function accepts a starting node
+- Create list to store the end result 
+- Create an object to store visited vertices
+- Create helper function that takes aceepts a vertex
+    - The helper function should return early if the vertex is empty
+    - The helper function should place the vertex it accepts into the visited object and push that vertex into the result array
+    - loop over all of the values in teh adjacencyList for that vertex
+    - if any of those values have not been visited, recursively invoke the helper function with that vertex
+- Invoke the helepr function with the starting vertex
+- return the result array
+```JS
+DFSRecursive(startVertex){
+    const result = [];
+    const visited = {};
+    const adjacencyList = this.adjacencyList; //putting this.adjacecnyList in helper function will return undefined error
+
+    function dfs(vertex){
+        if(!vertex) return null;
+        visited[vertex] = true;
+        result.push(vertex);
+        adjacencyList[vertex].forEach(neighbor => {
+            if(!visited[neighbor]){
+                return dfs(neighbor)
+            }
+        })
+    }
+    dfs(startVertex);
+    return result;
+}
+```
+##### DFS Iteratively
+PseudoCode
+DFS-iterative(start):
+    let S be a stack
+    S.push(start)
+    while S is not empty
+        vertex = S.pop()
+        if vertex is not lavbeled as discovered:
+            visit vertex (add to result list)
+            label vertex as discovered
+            for each of vertex's neighbors, N do 
+                S.push(N)
+In Depth PsuedoCode
+Function takes a starting node
+Create stack to help use keep track of vertices
+Create list to store the end result to be returned at the end
+Create object to store visited vertices
+Add the starting vertex to the stack and mark it visited
+While the stack has something in it:
+    pop the next vertex from the stack
+    if that vertex hasn't been visited yet
+        Mark it as visited
+        Add it to the result list
+        push all of its neighbors into the stack
+return the result array
+```JS
+DFSIterative(startVertex){
+    let stack = [start];
+    let result = [];
+    let visited = {};
+    visited[start] = true;
+
+    while(stack.length){
+        let vertex = stack.pop();
+        result.push(certex);
+        this.adjacencyList[vertex].forEach(neighbor => {
+            if(!visited[neighbor]){
+                visited[neighbor] = true;
+                stack.push(neighbor);
+            }
+        });
+    }
+    return result;
+}
+```
+**Order looks a little different because we are popping off the stack so rather than taking from the front of the adjacencyList values, taking from the back
 ### Compare and contrast graph traversal algorithms
