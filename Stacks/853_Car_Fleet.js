@@ -8,8 +8,13 @@ var carFleet = function(target, position, speed) {
     
 };
 
+
+
+
+/*
 /*
 Problem: How many different sets of cars arrive throughout the process?
+Stack Problem
 
 Notes:
 A car can never pass another car.
@@ -17,14 +22,24 @@ A car can never pass another car.
 the higher the position, the more ahead it is.
 Target number is the position
 once they meet, faster car will slow down
+    so its not even by hour
+        have to remember if the position has someone there already
+        if something at the beginning of the hour was behind another car and at the end of the hour passed the car, the car ahead must back up to the car behind
 
 
-Code Notes
-Stack
-if position is only one, return 1
-else
-create stack (LIFO)
-
+PsuedoCode Linear Time
+Notes
+- Calculate the intersection time?
+- Calculate what time each car reaches destination?
+    - if car that started behind, reaches earlier or reaches at the same time, must have become a fleet
+        (10-7)/1 = 3 hours to reach
+        (10-5)/2 = 2.5 hours to reach
+        the one that is ahead has the slower time and will be the new speed so we can get rid of that second car.
+        (10-3)/3 = 2.3
+        go from right to left. (higher starting position to the end) iterate in reverse order
+stack is initially empty
+    add from back, 
+    if exceeds, then take the first
 
 Others
 - create an array to signify positions
