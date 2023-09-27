@@ -5,9 +5,36 @@
  * @return {number}
  */
 var carFleet = function(target, position, speed) {
-    
+    if(position.length === 1) return 1;
+    if(position.length === 0) return 0;
+    //zip cars and then sort them
+    let zipped = zipAndSortCars(position,speed, target)
+    let firstCarDist = (target-zipped[0][0])/zipped[0][1]; //get car that is most ahead in position
+
+    let fleetStack = [firstCarDist]; 
+    for(let idx=1; idx < zipped.length; idx++){
+        let carDistance = zipped[idx][2];
+
+        let fleetStackLatestCalc = fleetStack[fleetStack.length-1];
+        //fleetStack.push(carDistance)
+
+        if(carDistance > fleetStackLatestCalc){ //if car reaches the destination before
+            fleetStack.push(carDistance);
+        }
+
+    }
+    return fleetStack.length;
 };
 
+let zipAndSortCars = function(position,speed, target){
+    let zipped = [];
+    for(let i in position){
+        let timeToReach = (target-position[i])/speed[i]
+        zipped.push([position[i], speed[i], timeToReach]);
+    }
+    let sorted = zipped.sort((a,b) => b[0] - a[0]); //in descending order
+    return sorted;
+}
 
 
 
